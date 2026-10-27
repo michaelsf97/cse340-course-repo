@@ -18,19 +18,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {title: 'Home - CSE 340'});
 });
 
 app.get('/organizations', (req, res) => {
-    res.render('organizations');
+    res.render('organizations', {title: 'Organizations - CSE 340'});
 });
 
 app.get('/projects', (req, res) => {
-    res.render('projects');
+    res.render('projects', {title: 'Projects - CSE 340'});
 });
 
 app.get('/categories', (req, res) => {
-    res.render('categories');
+    res.render('categories', {title: 'Categories - CSE 340'});
 });
 
 /// Start the server
