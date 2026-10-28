@@ -18,19 +18,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Home - CSE 340'});
+    const title = 'Home - CSE 340';
+    res.render('index', {title});
 });
 
 app.get('/organizations', (req, res) => {
-    res.render('organizations', {title: 'Organizations - CSE 340'});
+    const title = 'Organizations - CSE 340';
+    res.render('organizations', {title});
 });
 
 app.get('/projects', (req, res) => {
-    res.render('projects', {title: 'Projects - CSE 340'});
+    const title = 'Projects - CSE 340';
+    res.render('projects', {title});
 });
 
 app.get('/categories', (req, res) => {
-    res.render('categories', {title: 'Categories - CSE 340'});
+    const title = 'Categories - CSE 340';
+    res.render('cagtegories', {title});
 });
 
 /// Start the server
