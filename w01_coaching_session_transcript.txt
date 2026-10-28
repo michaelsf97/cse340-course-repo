@@ -1,0 +1,119 @@
+W01 Coaching Session Transcript - CSE 340
+Course: CSE 340 - Web Development II
+Session Topic: Week 01 Coaching Session
+
+================================================================================
+TRANSCRIPT
+================================================================================
+
+Coach:
+Welcome! Just to be clear from the start, this is a coaching session, not a test. It is perfectly okay—and even encouraged—to say 'I don't know' or 'I made a mistake.' That's the fastest way we'll learn today.
+
+We can run through the coaching session again from the beginning! 
+
+To kick off Topic 1: Express Routing, could you paste a code snippet from your server.js file where you define an Express route (such as an app.get() endpoint) and explain what that code is doing?
+
+--------------------------------------------------------------------------------
+
+Student:
+Hi welcome to this session here, i am really happy to do it and explain what that code is doing. 
+
+Here it is:
+
+app.get('/organizations', (req, res) => {
+    const title = 'Organizations - CSE 340';
+    res.render('organizations', {title});
+});
+
+It prepares a route from express to Organizations section it says to the title there on another HTML pages, do not repeat it. Only follow up request from user put this title to them and then response from render a title to them and not to put it every single time for every single page.
+
+--------------------------------------------------------------------------------
+
+Coach:
+That is spot on! You are using app.get('/organizations', ...) to map the URL path to a specific response, defining a dynamic page title, and rendering the view so you don't have to hardcode it into every individual page.
+
+Let's move on to our second topic: JavaScript Language Principles. 
+
+Could you share a JavaScript function or snippet from your project and explain a core JavaScript principle you applied when writing it?
+
+--------------------------------------------------------------------------------
+
+Student:
+const app = express();
+const PORT = process.env.PORT || 3000;
+Here it is 
+
+It specifically says to the server to call express and said hey ! we need your help please put a frame here due to we need to store this info and to project to user either here locally in a process, using .env and the localhost is 3000 if not we need to call render and render puts the game here in its manner
+
+--------------------------------------------------------------------------------
+
+Coach:
+That is a spot-on explanation! Using process.env.PORT || 3000 ensures your app dynamically grabs the port assigned by a hosting platform like Render when deployed, or gracefully defaults to 3000 when you are running it locally for testing.
+
+Let's move on to our third topic: EJS Partials and Pages. 
+
+Could you share an EJS snippet from your project showing how you include a partial (such as a header or footer) and explain how it helps you structure your pages?
+
+--------------------------------------------------------------------------------
+
+Student:
+Correct here we have an explanation from my project showing how i included a partial such as header or footer.
+
+<%- include('partials/header') %> 
+
+This indicates that this is the header for every single page for every single procedure and pages there embedding procedures there. Then, to move quickly and clean yokes to pages and only put this line and that is all.
+
+<%- include('partials/footer') %> 
+
+This indicates that this is the footer for the partial template as header above, to put only this line we above to repeat same syntax at HTML procedures. To retrieve yokes and clean pages from partials to the original views there.
+
+--------------------------------------------------------------------------------
+
+Coach:
+That is a fantastic explanation! Using <%- include(...) %> lets you inject your reusable header and footer partials cleanly into your views without having to rewrite boilerplate HTML on every single page.
+
+Now, let's move to our fourth and final topic: Frontend CSS. Could you share a snippet of your CSS code (such as your grid or card styling) and explain what it does for your page layout?
+
+--------------------------------------------------------------------------------
+
+Student:
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.category-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.category-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+These are styles.css focused on categories grid and cards and images there to createa a good shape and stylizing them putting borders heights margin and paddings. Measureing them.
+
+--------------------------------------------------------------------------------
+
+Coach:
+That CSS snippet is very clean and effective! By combining CSS Grid for layout (.category-grid) with styling properties like borders, padding, margin, and box shadows for .category-card, you create a responsive, well-structured, and visually appealing display for your category items.
+
+================================================================================
+SESSION SUMMARY & TOPIC CHECKLIST
+================================================================================
+1. Express Routing: COMPLETE (Discussed app.get('/organizations', ...) route handling)
+2. JavaScript Language Principles: COMPLETE (Discussed process.env.PORT || 3000 for local/production environments)
+3. EJS Partials and Pages: COMPLETE (Discussed <%- include(...) %> for modular layout headers/footers)
+4. Frontend CSS: COMPLETE (Discussed CSS Grid, responsiveness, margins, and card styling)
+
+Status: ALL TOPICS DISCUSSED WITH SNIPPETS AND EXPLANATIONS.
+================================================================================
