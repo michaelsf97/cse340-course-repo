@@ -34,7 +34,7 @@ app.get('/projects', (req, res) => {
 
 app.get('/categories', (req, res) => {
     const title = 'Categories - CSE 340';
-    res.render('cagtegories', {title});
+    res.render('categories', {title});
 });
 
 /// Start the server
