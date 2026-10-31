@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.get('/', (req, res) => {
     const title = 'Home - CSE 340';
-    res.render('index', {title});
+    res.render('home', {title});
 });
 
 app.get('/organizations', (req, res) => {
