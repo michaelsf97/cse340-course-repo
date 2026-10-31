@@ -2,11 +2,35 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f3f4f6;
-  color: #1f2937;
+  font-family: Arial, sans-serif;
+  background-color: lightblue;
+  padding: 20px;
+}
+
+body {
+  nav {
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    li {
+      display: inline;
+      margin-right: 15px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+
+      &:hover {
+        color: #0066cc;
+      }
+    }
+  }
 }
 
 .container {
