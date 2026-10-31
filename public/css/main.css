@@ -105,3 +105,38 @@ body {
     border-radius: 4px;
     margin: 10px 0;
 }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid #d5e4ef;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 14px rgba(23, 50, 77, 0.1);
+}
+
+.project-card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.project-card-content {
+  padding: 16px;
+}
+
+.project-card-content h3 {
+  margin-top: 0;
+}
