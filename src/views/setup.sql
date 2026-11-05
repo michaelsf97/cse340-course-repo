@@ -34,7 +34,7 @@ CREATE TABLE categories (
 CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
-    description TEXT(500) NOT NULL
+    description TEXT NOT NULL
 );
 
 CREATE TABLE projects_categories (
