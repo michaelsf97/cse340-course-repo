@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { testConnection } from './src/views/models/db.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,6 +39,13 @@ app.get('/categories', (req, res) => {
 });
 
 /// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+    try
+    {
+        await testConnection();
+        console.log('Server is running at http://127.0.0.1:${PORT}');
+        console.log('Environment: ${NODE_ENV}');
+    } catch (error) {
+        console.error('Error connecting to the database:', error);
+    }
 });
