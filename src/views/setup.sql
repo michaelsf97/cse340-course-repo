@@ -29,8 +29,12 @@ SELECT * FROM organization
 CREATE TABLE categories (
     category_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
+    description TEXT,
     image_filename VARCHAR(255) NOT NULL
 );
+
+ALTER TABLE categories
+ADD COLUMN IF NOT EXISTS description TEXT;
 
 CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
@@ -44,21 +48,21 @@ CREATE TABLE projects_categories (
     PRIMARY KEY (project_id, category_id)
 );
 
-INSERT INTO categories (name, image_filename) VALUES
-('Community Outreach'),
-('Environmental Cleanup'),
-('Education & Tutoring'),
-('Humanitarian Aid', 'humanitarianaid97.png'),
-('Human Rights & Advocacy', 'advocacy97.png'),
-('Disaster Relief & Support', 'disasterrelief97.png'),
-('Famine Support', 'famiine97.png'),
-('Environmental Actions', 'enviromental97.png'),
-('Clean Water & Sanitation', 'sanitation97.png');
+INSERT INTO categories (name, description, image_filename) VALUES
+('Community Outreach', 'Programs that connect volunteers with local community needs.', 'volunteer.png'),
+('Environmental Cleanup', 'Projects that help protect and restore the natural environment.', 'enviromental97.png'),
+('Education & Tutoring', 'Educational support and tutoring for learners in the community.', 'conventions97.png'),
+('Humanitarian Aid', 'Assistance for people affected by hardship and emergencies.', 'humanitarianaid97.png'),
+('Human Rights & Advocacy', 'Initiatives that promote human rights and community advocacy.', 'advocacy97.png'),
+('Disaster Relief & Support', 'Support for communities responding to disasters.', 'disasterrelief97.png'),
+('Famine Support', 'Efforts to provide food assistance to people facing hunger.', 'famine97.png'),
+('Environmental Actions', 'Actions that encourage sustainability and environmental care.', 'enviromental97.png'),
+('Clean Water & Sanitation', 'Projects that improve access to clean water and sanitation.', 'sanitation97.png');
 
 INSERT INTO projects (name, description) VALUES
 ('Park Cleanup', 'Join us to clean up local parks and make them beautiful!'),
 ('Food Drive', 'Help collect and distribute food to those in need.'),
-('Community Tutoring', 'Volunteer to tutor students in various subjects.')
+('Community Tutoring', 'Volunteer to tutor students in various subjects.');
 
 INSERT INTO projects_categories (project_id, category_id) VALUES
 (1, 1), -- Park Cleanup belongs to Community Outreach
