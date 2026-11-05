@@ -28,7 +28,8 @@ SELECT * FROM organization
 
 CREATE TABLE categories (
     category_id SERIAL PRIMARY KEY,
-    name VARCHAR(150) NOT NULL
+    name VARCHAR(150) NOT NULL,
+    image_filename VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE projects (
@@ -43,10 +44,16 @@ CREATE TABLE projects_categories (
     PRIMARY KEY (project_id, category_id)
 );
 
-INSERT INTO categories (name) VALUES
+INSERT INTO categories (name, image_filename) VALUES
 ('Community Outreach'),
 ('Environmental Cleanup'),
 ('Education & Tutoring')
+('Humanitarian Aid', 'humanitarianaid97.png'),
+('Human Rights & Advocacy', 'advocacy97.png'),
+('Disaster Relief & Support', 'disasterrelief97.png'),
+('Famine Support', 'famiine97.png'),
+('Environmental Actions', 'enviromental97.png'),
+('Clean Water & Sanitation', 'sanitation97.png');
 
 INSERT INTO projects (name, description) VALUES
 ('Park Cleanup', 'Join us to clean up local parks and make them beautiful!'),

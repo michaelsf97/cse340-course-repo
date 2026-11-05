@@ -5,6 +5,21 @@
     <p> Browse through the categories available in the application. </p>
 
     <div class="category-grid">
+        <% if (categories && categories.length > 0) { %>
+            <% categories.forEach(category => { %>
+                <div class="category-card">
+                    <h3><%= category.name %></h3>
+                    <a href="#" target="_blank">Learn More
+                        <img class="category-image" src="/public/images/<%= category.image_filename %>" alt="<%= category.name %>">
+                    </a>
+                    <p><%= category.description %></p>
+                </div>
+                <% }) %>
+                <% } else { %>
+                <p>No categories available at the moment.</p>
+                <% } %>
+                </div>
+                </main>
         <div class="category-card">
             <h2>Humanitarian Aid</h2>
             <a href="https://www.unicef.org/appeals" target="_blank">Learn More
