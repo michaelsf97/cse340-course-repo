@@ -48,7 +48,7 @@ INSERT INTO categories (name) VALUES
 ('Environmental Cleanup'),
 ('Education & Tutoring')
 
-INSERT INTO projects (title, description) VALUES
+INSERT INTO projects (name, description) VALUES
 ('Park Cleanup', 'Join us to clean up local parks and make them beautiful!'),
 ('Food Drive', 'Help collect and distribute food to those in need.'),
 ('Community Tutoring', 'Volunteer to tutor students in various subjects.')
