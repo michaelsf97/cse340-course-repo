@@ -1,8 +1,13 @@
 <%- include('partials/header') %>
 
 <main>
-    <h1>Organizations</h1>
-    <p>Welcome to the organizations section of the application.</p>
+    <h1><%= title %></h1>
+    <p>Here are a few of our partner organizations:</p>
+    <ul>
+        <% organizations.forEach(organization => { %>
+            <li><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong><%= organization.name %></strong>: <%= organization.contact_email %></li>
+            <% }); %>
+    </ul>
     <img class="main-logo" src="/images/sud97.png" alt="CSE340 SUD97 Logo">
     <img class="main-logo" src="/images/UnitedNations97.png" alt="CSE340 United Nations Logo">
     <img class="main-logo" src="/images/unicef97.png" alt="CSE340 United For Every Child">
