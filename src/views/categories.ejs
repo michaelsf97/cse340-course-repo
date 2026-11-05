@@ -10,7 +10,7 @@
                 <div class="category-card">
                     <h3><%= category.name %></h3>
                     <a href="#" target="_blank">Learn More
-                        <img class="category-image" src="/public/images/<%= category.image_filename %>" alt="<%= category.name %>">
+                        <img class="category-image" src="/images/<%= category.image_filename %>" alt="<%= category.name %>">
                     </a>
                     <p><%= category.description %></p>
                 </div>
@@ -18,7 +18,7 @@
                 <% } else { %>
                 <p>No categories available at the moment.</p>
                 <% } %>
-                </div>
-                </main>
+        </div>
+    </main>
         
 <%- include('partials/footer') %>

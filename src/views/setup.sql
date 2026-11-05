@@ -47,7 +47,7 @@ CREATE TABLE projects_categories (
 INSERT INTO categories (name, image_filename) VALUES
 ('Community Outreach'),
 ('Environmental Cleanup'),
-('Education & Tutoring')
+('Education & Tutoring'),
 ('Humanitarian Aid', 'humanitarianaid97.png'),
 ('Human Rights & Advocacy', 'advocacy97.png'),
 ('Disaster Relief & Support', 'disasterrelief97.png'),
