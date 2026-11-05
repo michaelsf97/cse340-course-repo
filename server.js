@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllCategories } from './src/models/categories.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -37,9 +38,16 @@ app.get('/projects', (req, res) => {
     res.render('projects', {title});
 });
 
-app.get('/categories', (req, res) => {
+app.get('/categories', async (req, res) => {
+    try {
+    const categories = await getAllCategories();
+
     const title = 'Categories - CSE 340';
-    res.render('categories', {title});
+    res.render('categories', {title, categories});
+    } catch (error) {
+    console.error('Error fetching categories:', error);
+    res.status(500).send('Internal Server Error');
+}
 });
 
 /// Start the server
