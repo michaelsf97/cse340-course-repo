@@ -36,7 +36,7 @@ CREATE TABLE categories (
 ALTER TABLE categories
 ADD COLUMN IF NOT EXISTS description TEXT;
 
-CREATE TABLE IF NOT EXISTS projects (
+CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
