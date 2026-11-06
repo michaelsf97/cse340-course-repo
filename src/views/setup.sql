@@ -68,12 +68,12 @@ INSERT INTO categories (name, description, image_filename) VALUES
 
 
 INSERT INTO projects (name, link, image_filename, description) VALUES 
-('Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip', '/images/projectsunicef97.png', 'UNICEF report about children in Gaza'),
-('Childrens Rights', 'https://www.unicef.org/child-rights-convention', '/images/conventions97.png', 'Information about the Convention on the Rights of the Child'),
-('Supporting Colombian Victims', 'https://masfe.org/noticias/iglesia-jesucristo-donaciones-damnificados-colombia', '/images/colombiavictims97.png', 'Volunteers providing aid in Colombia'),
+('Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip', 'projectsunicef97.png', 'UNICEF report about children in Gaza'),
+('Childrens Rights', 'https://www.unicef.org/child-rights-convention', 'conventions97.png', 'Information about the Convention on the Rights of the Child'),
+('Supporting Colombian Victims', 'https://masfe.org/noticias/iglesia-jesucristo-donaciones-damnificados-colombia', 'colombiavictims97.png', 'Volunteers providing aid in Colombia'),
 ('Combating Famine', 'https://masfe.org/noticias/iglesia-jesucristo-ayudando-acabar-hambre', '/images/famine97.png', 'People receiving humanitarian aid'),
-('Climate Action', 'https://news.un.org/en/story/2026/10/1168677', '/images/carbondioxide97.png', 'Industrial emissions and a report about carbon dioxide levels'),
-('Water Action', 'https://www.un.org/en/focus/water-action', '/images/wateraction97.png', 'Mountain lake representing global water action');
+('Climate Action', 'https://news.un.org/en/story/2026/10/1168677', 'carbondioxide97.png', 'Industrial emissions and a report about carbon dioxide levels'),
+('Water Action', 'https://www.un.org/en/focus/water-action', 'wateraction97.png', 'Mountain lake representing global water action');
 
 INSERT INTO projects_categories (project_id, category_id) VALUES
 (1, 1), -- Park Cleanup belongs to Community Outreach
