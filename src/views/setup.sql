@@ -39,7 +39,9 @@ ADD COLUMN IF NOT EXISTS description TEXT;
 CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    image_filename VARCHAR(255) NOT NULL DEFAULT 'default_project_image.png',
+    link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com'
 );
 
 CREATE TABLE projects_categories (
@@ -59,10 +61,11 @@ INSERT INTO categories (name, description, image_filename) VALUES
 ('Environmental Actions', 'Actions that encourage sustainability and environmental care.', 'enviromental97.png'),
 ('Clean Water & Sanitation', 'Projects that improve access to clean water and sanitation.', 'sanitation97.png');
 
-INSERT INTO projects (name, description) VALUES
-('Park Cleanup', 'Join us to clean up local parks and make them beautiful!'),
-('Food Drive', 'Help collect and distribute food to those in need.'),
-('Community Tutoring', 'Volunteer to tutor students in various subjects.');
+INSERT INTO projects (name, description, image_filename, link) VALUES
+('Park Cleanup', 'Join us to clean up local parks and make them beautiful!', 'park_cleanup.png', 'https://www.example.com/park-cleanup'),
+('Food Drive', 'Help collect and distribute food to those in need.', 'food_drive.png', 'https://www.example.com/food-drive'),
+('Community Tutoring', 'Volunteer to tutor students in various subjects.', 'community_tutoring.png', 'https://www.example.com/community-tutoring'),
+('Childhood define', 'Support children in Gaza', '/images/projectsunicef97.png', 'https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip'),
 
 INSERT INTO projects_categories (project_id, category_id) VALUES
 (1, 1), -- Park Cleanup belongs to Community Outreach
