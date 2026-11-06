@@ -7,6 +7,7 @@ import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllCategories } from './src/models/categories.js';
 import { getAllProjects } from './src/models/projects.js';
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
