@@ -36,7 +36,7 @@ CREATE TABLE categories (
 ALTER TABLE categories
 ADD COLUMN IF NOT EXISTS description TEXT;
 
-CREATE TABLE projects (
+CREATE TABLE IF NOT EXISTS projects (
     project_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
@@ -44,8 +44,7 @@ CREATE TABLE projects (
     link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com'
 );
 
-ALTER TABLE projects
-ADD COLUMN IF NOT EXISTS description TEXT;
+
 
 CREATE TABLE projects_categories (
     project_id INT REFERENCES projects(project_id) ON DELETE CASCADE,
