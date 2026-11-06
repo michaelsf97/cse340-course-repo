@@ -38,9 +38,16 @@ app.get('/organizations', async (req, res) => {
     }
 });
 
-app.get('/projects', (req, res) => {
+app.get('/projects', async (req, res) => {
+    try {
+        const projects = await getAllProjects();
+    
     const title = 'Projects - CSE 340';
-    res.render('projects', {title});
+    res.render('projects', {title, projects});
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 app.get('/categories', async (req, res) => {
