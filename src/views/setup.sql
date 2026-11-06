@@ -44,6 +44,9 @@ CREATE TABLE projects (
     link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com'
 );
 
+ALTER TABLE projects
+ADD COLUMN IF NOT EXISTS description TEXT;
+
 CREATE TABLE projects_categories (
     project_id INT REFERENCES projects(project_id) ON DELETE CASCADE,
     category_id INT REFERENCES categories(category_id) ON DELETE CASCADE,
