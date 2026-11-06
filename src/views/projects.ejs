@@ -9,8 +9,28 @@
     </ul>
 
     <p>Here you can explore the most recent projects we developed.</p>
+
     <div class="project-grid">
-        <article class="project-card">
+
+        <% if (projects && projects.length > 0) { %>
+
+            <% projects.forEach(project => { %>
+            <article class="project-card">
+                <a href="<% project.link %>" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/<% project.image %>" alt="<%= project.name %>">
+                    <div class="project-card-content">
+                <h3><%= project.name %></h3>
+                <span>Explore &rarr;</span>
+            </div>
+        </a>
+    </article>
+
+            <% }) %>
+            <% } else { %>
+                <p> No projects available. </p>
+                <% } %>
+     </div>
+</main>
             <a href="https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip" target="_blank" rel="noopener noreferrer">
                 <img src="/images/projectsunicef97.png" alt="UNICEF report about children in Gaza">
                 <div class="project-card-content">
