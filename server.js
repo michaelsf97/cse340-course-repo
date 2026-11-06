@@ -27,10 +27,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/organizations', async (req, res) => {
+    try {
     const organizations = await getAllOrganizations();
-    const title = 'Our Partner Organizations';
 
+    const title = 'Our Partner Organizations';
     res.render('organizations', {title, organizations});
+    } catch (error) {
+        console.error('Error fetching organizations:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 app.get('/projects', (req, res) => {
