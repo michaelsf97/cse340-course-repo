@@ -41,12 +41,11 @@ CREATE TABLE projects (
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
     image_filename VARCHAR(255) NOT NULL DEFAULT 'default_project_image.png',
-    link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com',
-    location VARCHAR(255) NOT NULL DEFAULT 'Unknown Location',
-    project_date DATE OR TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com'
 );
 
-ALTER TABLE projects
+ALTER TABLE projects ADD COLUMN location VARCHAR(150) DEFAULT 'Unknown';
+ALTER TABLE projects ADD COLUMN date DATE OR TIMESTAMP DEFAULT CURRENT_DATE;
 ADD COLUMN IF NOT EXISTS description TEXT;
 
 
