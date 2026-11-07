@@ -1,6 +1,6 @@
 import db from './db.js'
 
-export async function getAllCategories() {
+export const getAllCategories = async() => {
     try {
         const result = await db.query('SELECT * FROM public.categories');
         return result.rows;
