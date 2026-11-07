@@ -1,0 +1,162 @@
+Learning Coaching Session Transcript
+Date: November 7, 2026
+Student: Michael Smith Saavedra F.
+Course: CSE 340 / Web Development
+
+--------------------------------------------------------------------------------
+COACHING SESSION TRANSCRIPT
+--------------------------------------------------------------------------------
+
+Coach:
+Welcome! Just to be clear from the start, this is a coaching session, not a test. It is perfectly okay—and even encouraged—to say 'I don't know' or 'I made a mistake.' That's the fastest way we'll learn today.
+
+Hello Michael! As your learning coach and software mentor, I'm really looking forward to discussing your project with you today in a relaxed, supportive environment.
+
+To kick things off for our first topic on Relational Database Design and Structure, could you please paste one of your table creation statements or relevant SQL queries into the chat so we can look at it together?
+
+--------------------------------------------------------------------------------
+
+Michael:
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL,
+    image_filename VARCHAR(255) NOT NULL DEFAULT 'default_project_image.png',
+    link VARCHAR(320) NOT NULL DEFAULT 'https://www.example.com'
+);
+
+INSERT INTO projects (name, link, image_filename, description) VALUES 
+('Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip', 'projectsunicef97.png', 'UNICEF report about children in Gaza'),
+('Childrens Rights', 'https://www.unicef.org/child-rights-convention', 'conventions97.png', 'Information about the Convention on the Rights of the Child'),
+('Supporting Colombian Victims', 'https://masfe.org/noticias/iglesia-jesucristo-donaciones-damnificados-colombia', 'colombiavictims97.png', 'Volunteers providing aid in Colombia'),
+('Combating Famine', 'https://masfe.org/noticias/iglesia-jesucristo-ayudando-acabar-hambre', 'famine97.png', 'People receiving humanitarian aid'),
+('Climate Action', 'https://news.un.org/en/story/2026/10/1168677', 'carbondioxide97.png', 'Industrial emissions and a report about carbon dioxide levels'),
+('Water Action', 'https://www.un.org/en/focus/water-action', 'wateraction97.png', 'Mountain lake representing global water action');
+
+--------------------------------------------------------------------------------
+
+Coach:
+Thank you for sharing this code snippet. I really like how you structured the `projects` table with clear fields, descriptions, and very useful default values.
+
+Since this table stores the projects, how does it relate or connect to the other tables in your database (such as organizations or categories)?
+
+--------------------------------------------------------------------------------
+
+Michael:
+It connects through foreign keys each other. Or linking tables in other words "Bridges"
+
+--------------------------------------------------------------------------------
+
+Coach:
+Exactly! Using foreign keys as bridges is the perfect way to connect our tables relationally.
+
+Moving on to our second topic (Server-Side Data Access Logic in Node.js), could you share a Node.js function from your project that connects to the database to query or retrieve this information?
+
+--------------------------------------------------------------------------------
+
+Michael:
+let db = null;
+
+if (process.env.NODE_ENV === 'development' && process.env.ENABLE_SQL_LOGGING === 'true') {
+    /**
+     * In development mode, we wrap the pool to provide query logging.
+     * This helps with debugging by showing all executed queries in the console.
+     * 
+     * The wrapper also adds timing information to help identify slow queries
+     * and tracks the number of rows affected by each query.
+     */
+    db = {
+        async query(text, params) {
+            try {
+                const start = Date.now();
+                const res = await pool.query(text, params);
+                const duration = Date.now() - start;
+                console.log('Executed query:', { 
+                    text: text.replace(/\s+/g, ' ').trim(), 
+                    duration: `${duration}ms`, 
+                    rows: res.rowCount 
+                });
+                return res;
+            } catch (error) {
+                console.error('Error in query:', { 
+                    text: text.replace(/\s+/g, ' ').trim(), 
+                    error: error.message 
+                });
+                throw error;
+            }
+        },
+
+        async close() {
+            await pool.end();
+        }
+    };
+} else {
+    // In production, export the pool directly without logging overhead
+    db = pool;
+}
+
+--------------------------------------------------------------------------------
+
+Coach:
+Great job with this code! I think it's a very elegant and professional way to handle query logging and performance in development without compromising speed in production.
+
+Now, moving to our third topic (Express Server Logic and Routing), could you share a specific route declaration or route handler from your main server file (`server.js`) so we can see how it maps routes to logic?
+
+--------------------------------------------------------------------------------
+
+Michael:
+app.get('/projects', async (req, res) => {
+    try {
+        const projects = await getAllProjects();
+    
+    const title = 'Projects - CSE 340';
+    res.render('projects', {title, projects});
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+--------------------------------------------------------------------------------
+
+Coach:
+Excellent route implementation! I love seeing how you handle the `try...catch` block asynchronously and how neatly you pass the data and title to the view using `res.render`.
+
+For our fourth and final topic (Client-Side Rendering / EJS Templates), could you share a line or block of EJS syntax from your template file (e.g., `projects.ejs`) that you use to display or loop through this data?
+
+--------------------------------------------------------------------------------
+
+Michael:
+<div class="project-grid">
+
+        <% if (projects && projects.length > 0) { %>
+
+            <% projects.forEach(project => { %>
+            <article class="project-card">
+                <a href="<%= project.link %>" target="_blank" rel="noopener noreferrer">
+                    <img src="/images/<%= project.image_filename %>" alt="<%= project.name %>">
+                    <div class="project-card-content">
+                <h3><%= project.name %></h3>
+                <span>Explore &rarr;</span>
+            </div>
+        </a>
+    </article>
+
+            <% }) %>
+            <% } else { %>
+                <p> No projects available. </p>
+                <% } %>
+     </div>
+
+--------------------------------------------------------------------------------
+
+Coach:
+Great job with the EJS code! I really like how safely you handle the loop with `<% projects.forEach ... %>` and the validation `<% if (projects && projects.length > 0) %>` to prevent errors if the list comes back empty. Additionally, using `<%= ... %>` to render the name, image, and link ensures that content is properly escaped.
+
+We have successfully covered all four required topics for our coaching session:
+1. Relational Database Design (The `projects` table and foreign keys).
+2. Server-Side Data Access Logic (PostgreSQL connection and logging with `pool`).
+3. Express Server Logic and Routing (`app.get('/projects')` route with `async/await` and `res.render`).
+4. Client-Side Rendering (EJS template iterating with `forEach` and rendering data with `<%= %>`).
+
+How did you feel during the session, and do you have any final questions about these topics before we generate the `.txt` file with the full transcript?
