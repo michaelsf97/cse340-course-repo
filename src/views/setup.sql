@@ -42,7 +42,7 @@ INSERT INTO organization (name, description, contact_email, logo_filename) VALUE
 -- =====================================================
 INSERT INTO projects (organization_id, name, link, image_filename, description, location, date) VALUES 
 -- Organization 1 (UNICEF)
-(1, 'Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle', 'default_project_image.png', 'Humanitarian support and aid for children in Gaza.', 'Gaza', '2026-01-05'),
+(1, 'Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle', 'projectsunicef97.png', 'Humanitarian support and aid for children in Gaza.', 'Gaza', '2026-01-05'),
 (1, 'Childrens Rights', 'https://www.unicef.org/child-rights-convention', 'conventions97.png', 'Information and advocacy on child rights globally.', 'New York', '2026-01-15'),
 (1, 'Education in Emergencies', 'https://www.unicef.org/education', 'education97.png', 'Providing temporary learning spaces for children in crises.', 'Beirut', '2026-02-10'),
 (1, 'Malnutrition Treatment', 'https://www.unicef.org/nutrition', 'nutrition97.png', 'Screening and treating severe acute malnutrition in vulnerable communities.', 'Yemen', '2026-03-15'),
