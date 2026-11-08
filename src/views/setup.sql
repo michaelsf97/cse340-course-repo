@@ -58,6 +58,6 @@ INSERT INTO projects (organization_id, name, link, image_filename, description, 
 -- Organization 3 (United Nations)
 (3, 'Renewable Energy Transition', 'https://www.un.org/en/climatechange/raising-ambition/renewable-energy', 'solar97.png', 'Installing solar panels in off-grid rural community centers.', 'Nairobi', '2026-02-12'),
 (3, 'Ocean Cleanup Drive', 'https://theoceancleanup.com/', 'ocean97.png', 'Mobilizing volunteers to remove plastic waste from coastal areas.', 'Manila', '2026-03-28'),
-(3, 'Biodiversity Protection', 'https://www.un.org/biodiversity', 'forest97.png', 'Restoring endangered native forest ecosystems and natural habitats.', 'Amazonia', '2026-04-15'),
+(3, 'Biodiversity Protection', 'https://news.un.org/en/story/2024/01/1145772', 'forest97.png', 'Restoring endangered native forest ecosystems and natural habitats.', 'Amazonia', '2026-04-15'),
 (3, 'Climate Action', 'https://news.un.org/en/story/2026/10/1168677', 'carbondioxide97.png', 'Industrial actions, carbon tracking, and environmental policies.', 'Geneva', '2026-01-05'),
 (3, 'Water Action', 'https://www.un.org/en/focus/water-action', 'wateraction97.png', 'Mountain lake protection, glacier preservation, and water conservation.', 'Nairobi', '2026-01-22');
