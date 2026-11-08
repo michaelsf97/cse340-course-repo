@@ -51,7 +51,7 @@ INSERT INTO projects (organization_id, name, link, image_filename, description, 
 -- Organization 2 (Humanitarian Aid Organization)
 (2, 'Clean Water Initiative', 'https://masfe.org/water', 'waterwell97.png', 'Installing community water filtration systems for rural families.', 'La Guajira', '2026-01-25'),
 (2, 'Shelter Support', 'https://masfe.org/shelter', 'shelter97.png', 'Rebuilding homes damaged by severe seasonal flooding and landslides.', 'Choco', '2026-02-18'),
-(2, 'Back-to-School Supply Drive', 'https://masfe.org/school', 'schoolsupplies97.png', 'Donating backpacks, notebooks, and uniforms to low-income students.', 'Bogota', '2026-03-05'),
+(2, 'Back-to-School Supply Drive', 'https://www.thechurchnews.com/living-faith/2026/09/23/school-donations-tonga-brazil-paraguay-rwanda-guatemala-philippines/', 'schoolsupplies97.png', 'Donating backpacks, notebooks, and uniforms to low-income students.', 'Bogota', '2026-03-05'),
 (2, 'Supporting Colombian Victims', 'https://masfe.org/noticias/iglesia-jesucristo-donaciones-damnifica', 'default_project_image.png', 'Support for local victims and families affected by disasters.', 'Bogota', '2026-01-10'),
 (2, 'Combating Famine', 'https://masfe.org/noticias/iglesia-jesucristo-ayudando-acabar-hambre', 'famine.png', 'Food distribution and sustainable agriculture initiatives.', 'Cali', '2026-01-20'),
 
