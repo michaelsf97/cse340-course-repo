@@ -56,7 +56,7 @@ INSERT INTO projects (organization_id, name, link, image_filename, description, 
 (2, 'Combating Famine', 'https://masfe.org/noticias/iglesia-jesucristo-ayudando-acabar-hambre', 'famine.png', 'Food distribution and sustainable agriculture initiatives.', 'Cali', '2026-01-20'),
 
 -- Organization 3 (United Nations)
-(3, 'Renewable Energy Transition', 'https://news.un.org/energy', 'solar97.png', 'Installing solar panels in off-grid rural community centers.', 'Nairobi', '2026-02-12'),
+(3, 'Renewable Energy Transition', 'https://www.un.org/en/climatechange/raising-ambition/renewable-energy', 'solar97.png', 'Installing solar panels in off-grid rural community centers.', 'Nairobi', '2026-02-12'),
 (3, 'Ocean Cleanup Drive', 'https://www.un.org/ocean', 'ocean97.png', 'Mobilizing volunteers to remove plastic waste from coastal areas.', 'Manila', '2026-03-28'),
 (3, 'Biodiversity Protection', 'https://www.un.org/biodiversity', 'forest97.png', 'Restoring endangered native forest ecosystems and natural habitats.', 'Amazonia', '2026-04-15'),
 (3, 'Climate Action', 'https://news.un.org/en/story/2026/10/1168677', 'carbondioxide97.png', 'Industrial actions, carbon tracking, and environmental policies.', 'Geneva', '2026-01-05'),
