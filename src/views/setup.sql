@@ -79,6 +79,9 @@ INSERT INTO projects (organization_id,name, link, image_filename, description, l
 (2, 'Back-to-School Supply Drive', 'https://masfe.org/school', 'schoolsupplies97.png', 'Donating backpacks, notebooks, and uniforms to low-income students.', 'Bogotá', '2026-03-05'),
 (2,'Supporting Colombian Victims', 'https://masfe.org/noticias/iglesia-jesucristo-donaciones-damnificados-colombia', 'colombiavictims97.png', 'Volunteers providing aid in Colombia', 'Colombia', '2023-10-01'),
 (2,'Combating Famine', 'https://masfe.org/noticias/iglesia-jesucristo-ayudando-acabar-hambre', 'famine97.png', 'People receiving humanitarian aid', 'Various Locations', '2023-10-01'),
+(3, 'Renewable Energy Transition', 'https://news.un.org/energy', 'solar97.png', 'Installing solar panels in off-grid rural community centers.', 'Nairobi', '2026-02-12'),
+(3, 'Ocean Cleanup Drive', 'https://www.un.org/ocean', 'ocean97.png', 'Mobilizing volunteers to remove plastic waste from coastal areas.', 'Manila', '2026-03-28'),
+(3, 'Biodiversity Protection', 'https://www.un.org/biodiversity', 'forest97.png', 'Restoring endangered native forest ecosystems and habitats.', 'Amazonia', '2026-04-15'),
 (3,'Climate Action', 'https://news.un.org/en/story/2026/10/1168677', 'carbondioxide97.png', 'Industrial emissions and a report about carbon dioxide levels', 'Global', '2023-10-01'),
 (3,'Water Action', 'https://www.un.org/en/focus/water-action', 'wateraction97.png', 'Mountain lake representing global water action', 'Global', '2023-10-01');
 
