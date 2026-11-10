@@ -21,6 +21,14 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 // Public folder for static files (CSS, Images)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to log incoming requests
+app.use ((req, res, next) => {
+    if (process.env.NODE_ENV === 'development') {
+        console.log(`${req.method} ${req.url}`);
+    }
+    next(); // Pass control to the next middleware or route handler
+});
+
 // Routes
 app.get('/', (req, res) => {
     const title = 'Home - CSE 340';
