@@ -29,6 +29,12 @@ app.use ((req, res, next) => {
     next(); // Pass control to the next middleware or route handler
 });
 
+// Middleware to make NODE_ENV available to all templates
+app.use((req,res, next) => {
+    res.locals.NODE_ENV = NODE_ENV;
+    next();
+});
+
 // Routes
 app.get('/', (req, res) => {
     const title = 'Home - CSE 340';
