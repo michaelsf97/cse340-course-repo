@@ -77,6 +77,34 @@ app.get('/categories', async (req, res) => {
 }
 });
 
+// Catch-all route for 404 errors
+app.use((req, res, next) => {
+    const err = new Error('Page Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// Global error handler 
+app.use((err, req, res, next) => {
+    // Log error details for debugging
+    console.error('Error ocurred:', err.message);
+    console.error('Stack trace:', err.stack);
+
+    // Determine the status and template
+    const status = err.status || 500;
+    const template = status === 404 ? '404' : '500';
+
+    // Prepare Data For The Template
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: err.message,
+        stack: err.stack
+    };
+
+    // Render the appropriate error template
+    res.status(status).render(`errors/${template}`, context);
+});
+
 /// Start the server
 app.listen(PORT, async () => {
     try
