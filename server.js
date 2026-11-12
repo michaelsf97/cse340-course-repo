@@ -5,19 +5,29 @@ import { fileURLToPath } from 'url';
 import { testConnection } from './src/models/db.js';
 import router from './src/routes.js';
 
-const app = express();
+// Define the application environment
+const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
+
+
+// Define the port number the server will listen on
 const PORT = process.env.PORT || 3000;
 
 // Config __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Config EJS as view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'src', 'views'));
+const app = express();
+
+// Configure Express Middleware
 
 // Public folder for static files (CSS, Images)
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Config EJS as view engine
+app.set('view engine', 'ejs');
+// Tell Express where to find templates
+app.set('views', path.join(__dirname, 'src', 'views'));
+
 
 // Middleware to log incoming requests
 app.use ((req, res, next) => {
