@@ -3,9 +3,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllCategories } from './src/models/categories.js';
-import { getAllProjects } from './src/models/projects.js';
+import router from './src/routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,53 +34,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get('/', (req, res) => {
-    const title = 'Home - CSE 340';
-    res.render('home', {title});
-});
-
-app.get('/organizations', async (req, res) => {
-    try {
-    const organizations = await getAllOrganizations();
-
-    const title = 'Our Partner Organizations';
-    res.render('organizations', {title, organizations});
-    } catch (error) {
-        console.error('Error fetching organizations:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-app.get('/projects', async (req, res) => {
-    try {
-        const projects = await getAllProjects();
-    
-    const title = 'Projects - CSE 340';
-    res.render('projects', {title, projects});
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-app.get('/categories', async (req, res) => {
-    try {
-    const categories = await getAllCategories();
-
-    const title = 'Categories - CSE 340';
-    res.render('categories', {title, categories});
-    } catch (error) {
-    console.error('Error fetching categories:', error);
-    res.status(500).send('Internal Server Error');
-}
-});
-
-// Temporal route to test error 500.
-app.get('/test-error', (req, res, next) => {
-    const err = new Error('This is a test error');
-    err.status = 500;
-    next(err);
-});
+app.use(router);
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {
