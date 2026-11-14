@@ -19,4 +19,4 @@ const showCategoryDetailsPage = async (req, res) => {
 };
 
 
-export { showCategoriesPage };
+export { showCategoriesPage, showCategoryDetailsPage };
