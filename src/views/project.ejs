@@ -16,6 +16,11 @@
                 <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
                 </p>
             </div>
+
+            // External website link 
+            <div class="project-external-link">
+                <a href="<%= project.url %>" target="_blank">Visit External Website</a>
+            </div>
         </article>
         <% } else { %>
             <p> Project Details Not Found.</p>
