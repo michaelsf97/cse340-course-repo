@@ -52,5 +52,25 @@ import db from './db.js';
         return result.rows;
     };
 
+    const getProjectDetails = async (id) => {
+        const query = `
+        SELECT 
+            p.project_id,
+            p.name AS title,
+            p.description,
+            p.date,
+            p.location,
+            p.organization_id,
+            o.name AS organization_name
+        FROM projects p
+        JOIN organizations o ON p.organization_id = o.organization_id
+        WHERE p.project_id = $1
+    `;
+    const queryParams = [id];
+    const result = await db.query(query, queryParams);
+
+    return result.rows[0];
+    }
+
     // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList, getProjectDetails };
