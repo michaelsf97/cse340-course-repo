@@ -1,24 +1,19 @@
 <%- include('partials/header') %>
 
 <main>
-    <h2> Categories </h2>
-    <p> Browse through the categories available in the application. </p>
+    <h1> <%= title %></h1>
 
-    <div class="category-grid">
         <% if (categories && categories.length > 0) { %>
+            <ul>
             <% categories.forEach(category => { %>
-                <div class="category-card">
-                    <h3><%= category.name %></h3>
-                    <a href="#" target="_blank">Learn More
-                        <img class="category-image" src="/images/<%= category.image_filename %>" alt="<%= category.name %>">
-                    </a>
-                    <p><%= category.description %></p>
-                </div>
+                <li>
+                    <a href="/category/<%= category.category_id %>"><% category.name %></a>
+                    </li>
                 <% }) %>
-                <% } else { %>
-                <p>No categories available at the moment.</p>
-                <% } %>
-        </div>
-    </main>
+            </ul>
+        <% } else { %>
+            <p> No categories available or found.</p>
+        <% } %>
+</main>
         
 <%- include('partials/footer') %>
