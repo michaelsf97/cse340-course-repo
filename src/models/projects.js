@@ -61,6 +61,7 @@ import db from './db.js';
             p.date,
             p.location,
             p.organization_id,
+            p.link,
             o.name AS organization_name
         FROM projects p
         JOIN organization o ON p.organization_id = o.organization_id
