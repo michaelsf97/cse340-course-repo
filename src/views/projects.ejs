@@ -11,7 +11,7 @@
 
             <% projects.forEach(project => { %>
             <article class="project-card">
-                <a href="/project/<% project.project_id %>" class="project-card-link">
+                <a href="/project/<%= project.project_id %>" class="project-card-link">
                     <img src="/images/<%= project.image_filename %>" alt="<%= project.name %>">
                     <div class="project-card-content">
                 <h3><%= project.name %></h3>
