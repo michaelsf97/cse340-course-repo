@@ -8,7 +8,7 @@ const showProjectsPage = async (req, res) => {
 
 const showUpcomingProjectsListPage = async (req, res) => {
     try {
-    const projectsLimits = await getUpcomingProjectsList();
+    const projects = await getUpcomingProjectsList();
     const title = 'Upcoming Projects';
     res.render('projects', { title, projects });
     } catch (error) {
