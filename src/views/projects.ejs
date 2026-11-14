@@ -14,14 +14,14 @@
                 <a href="/project/<%= project.project_id %>" class="project-card-link">
                     <img src="/images/<%= project.image_filename %>" alt="<%= project.name %>">
                     <div class="project-card-content">
-                <h3><%= project.name %></h3>
+                <h3><%= project.name || project.title %></h3>
                 <p><%= project.description %></p>
                 <span class="explore-link">Explore &rarr;</span>
             </div>
         </a>
 
         <div class="project-card-footer">
-         <a href="/organization/<%= project.organization_id %>" class="org-link">View Organization</a>
+         <a href="/organization/<%= project.organization_id %>" class="org-link">Organization Details</a>
          </div>
     </article>
 
