@@ -19,7 +19,7 @@ import db from './db.js';
         description,
         location,
         date
-        FROM project
+        FROM projects
         WHERE organization_id = $1
         ORDER BY date
         `;
