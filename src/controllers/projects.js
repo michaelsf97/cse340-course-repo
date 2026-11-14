@@ -7,3 +7,4 @@ const showProjectsPage = async (req, res) => {
 };
 
 export { showProjectsPage };
+

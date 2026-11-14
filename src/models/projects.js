@@ -32,5 +32,25 @@ import db from './db.js';
 
     };
 
+    const getUpcomingProjectsLimit = async (organizationId) => {
+        const query = `
+        SELECT
+        project_id,
+        organization_id,
+        name,
+        description,
+        location,
+        date
+        FROM projects
+        ORDER BY date
+        LIMIT 5
+        `;
+
+        const queryParams = [organizationId];
+        const result = await db.query(query, params);
+
+        return result.rows;
+    };
+
     // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsLimit };
