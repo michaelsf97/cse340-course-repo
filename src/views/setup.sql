@@ -74,7 +74,7 @@ INSERT INTO categories (name, description, image_filename) VALUES
 ('Clean Water & Sanitation', 'Projects that improve access to clean water and sanitation.', 'sanitation97.png');
 
 
-INSERT INTO projects (organization_id,name, link, image_filename, description, location, date) VALUES 
+INSERT INTO projects (organization_id, name, link, image_filename, description, location, date) VALUES 
 (1,'Supporting Children in Gaza', 'https://www.unicef.org/press-releases/childhood-defined-struggle-survival-gaza-strip', 'projectsunicef97.png', 'UNICEF report about children in Gaza', 'Gaza Strip', '2023-10-01'),
 (1,'Childrens Rights', 'https://www.unicef.org/child-rights-convention', 'conventions97.png', 'Information about the Convention on the Rights of the Child', 'Global', '2023-10-01'),
 (1, 'Education in Emergencies', 'https://www.unicef.org/education', 'education97.png', 'Providing temporary learning spaces and supplies for children affected by crises.', 'Beirut', '2026-02-10'),

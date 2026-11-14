@@ -15,7 +15,7 @@ import db from './db.js';
         SELECT
         project_id,
         organization_id,
-        title,
+        name,
         description,
         location,
         date
