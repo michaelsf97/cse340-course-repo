@@ -32,7 +32,7 @@ import db from './db.js';
 
     };
 
-    const getUpcomingProjectsLimit = async (organizationId) => {
+    const getUpcomingProjectsList = async (organizationId) => {
         const query = `
         SELECT
         project_id,
@@ -53,4 +53,4 @@ import db from './db.js';
     };
 
     // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsLimit };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList };
