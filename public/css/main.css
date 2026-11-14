@@ -118,6 +118,9 @@ body {
   border-radius: 12px;
   background: white;
   box-shadow: 0 4px 14px rgba(23, 50, 77, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-card a {
@@ -154,3 +157,16 @@ body {
   color: #086b9f;
   font-weight: 700;
 }
+
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
+}
+
+.project-card-footer {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  background-color: #fafafa;
+}
+
