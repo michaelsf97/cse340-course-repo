@@ -46,7 +46,11 @@ const getProjectsByCategoryId = async (categoryId) => {
     JOIN project_categories pc ON p.project_id = pc.project_id
     WHERE pc.category_id = $1
     `;
+    const result = db.query(query, [category_Id]);
+    return result.rows;
 };
+
+export { getAllCategories, getCategoryById, getCategoriesByProjectId, getProjectsByCategoryId };
 
 
 
