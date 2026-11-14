@@ -20,14 +20,14 @@ const getCategoryById = async (categoryId) => {
     `;
 
     const result = await db.query(query, [categoryId]);
-    return result.rows[0];
+    return result.rows && result.rows.length > 0 ? result.rows[0]: null;
 };
 
 const getCategoriesByProjectId = async (projectId) => {
     const query = `
     SELECT c.category_id, c.name
     FROM categories c
-    JOIN project_categories pc ON c.category_id = pc.category_id
+    JOIN projects_categories pc ON c.category_id = pc.category_id
     WHERE pc.project_id = $1
     `;
     const result = await db.query(query, [projectId]);
@@ -43,11 +43,11 @@ const getProjectsByCategoryId = async (categoryId) => {
     p.date,
     p.location
     FROM projects p
-    JOIN project_categories pc ON p.project_id = pc.project_id
+    JOIN projects_categories pc ON p.project_id = pc.project_id
     WHERE pc.category_id = $1
     `;
-    const result = db.query(query, [categoryId]);
-    return result.rows;
+    const result = await db.query(query, [categoryId]);
+    return result.rows || [];
 };
 
 export { getAllCategories, getCategoryById, getCategoriesByProjectId, getProjectsByCategoryId };

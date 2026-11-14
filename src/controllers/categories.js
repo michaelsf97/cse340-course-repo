@@ -1,4 +1,4 @@
-import { getAllCategories, getCategoryById, getCategoriesByProjectId, getProjectsByCategoryId } from '../models/categories.js';
+import { getAllCategories, getCategoryById, getProjectsByCategoryId } from '../models/categories.js';
 
 const showCategoriesPage = async (req, res) => {
     const categories = await getAllCategories();
@@ -8,13 +8,21 @@ const showCategoriesPage = async (req, res) => {
 
 };
 
+
+
 const showCategoryDetailsPage = async (req, res) => {
+    try {
+
     const categoryId = req.params.id;
     const category = await getCategoryById(categoryId);
     const projects = await getProjectsByCategoryId(categoryId);
-    const title = category ? category.name : 'Category Details';
+    const title = 'Category Details';
 
-    res.render('category', {title, category, projects });
+    res.render('category', { title, projects, category });
+} catch (error) {
+    console.error(error);
+    res.status(500).send(`Server Error: ${error.message}`);
+}
 
 };
 
