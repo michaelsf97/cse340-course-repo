@@ -18,9 +18,11 @@
             </div>
 
             // External website link 
+            <% if (project.link) { %>
             <div class="project-external-link">
-                <a href="<%= project.url %>" target="_blank">Visit External Website</a>
+                <a href="<%= project.link %>" target="_blank">Visit External Website</a>
             </div>
+            <% } %>
         </article>
         <% } else { %>
             <p> Project Details Not Found.</p>
