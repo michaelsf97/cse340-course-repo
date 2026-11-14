@@ -17,7 +17,19 @@ const showUpcomingProjectsListPage = async (req, res) => {
     }
 };
 
+const showProjectDetailsPage = async (req, res) => {
+    try {
+        const projectId = req.params.id;
+        const project = await getProjectById(projectId); 
+        
+        res.render('project-detail', { title: project.name, project });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+};
 
 
-export { showProjectsPage, showUpcomingProjectsListPage };
+
+export { showProjectsPage, showUpcomingProjectsListPage, showProjectDetailsPage };
 
