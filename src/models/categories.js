@@ -14,8 +14,8 @@ const getCategoryById = async (categoryId) => {
     const query = `
     SELECT 
     category_id,
-    name,
-    FROM categories,
+    name
+    FROM categories
     WHERE category_id = $1
     `;
 
@@ -46,7 +46,7 @@ const getProjectsByCategoryId = async (categoryId) => {
     JOIN project_categories pc ON p.project_id = pc.project_id
     WHERE pc.category_id = $1
     `;
-    const result = db.query(query, [category_Id]);
+    const result = db.query(query, [categoryId]);
     return result.rows;
 };
 
