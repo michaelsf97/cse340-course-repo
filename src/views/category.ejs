@@ -3,7 +3,7 @@
 <main>
     <h1> <%= title %> </h1>
 
-    <% if (category) { %>
+    <% if (projects && projects.length > 0) { %>
 
         <h2><% category.name %></h2>
         <p>Services Projects Associated With This Category:</p>
@@ -15,7 +15,7 @@
                 <% }) %>
         </ul>
     <% } else { %>
-        <p> Category not found.</p>
+        <p> No Services Found For This Category.</p>
         <% } %>
 </main>
 
