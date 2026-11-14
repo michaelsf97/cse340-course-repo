@@ -1,4 +1,4 @@
-import { getAllProjects } from '../models/projects.js';
+import { getAllProjects, getUpcomingProjectsList } from '../models/projects.js';
 
 const showProjectsPage = async (req, res) => {
     const projects = await getAllProjects();
@@ -6,5 +6,18 @@ const showProjectsPage = async (req, res) => {
     res.render('projects', { title, projects });
 };
 
-export { showProjectsPage };
+const showUpcomingProjectsListPage = async (req, res) => {
+    try {
+    const projectsLimits = await getUpcomingProjectsList();
+    const title = 'Upcoming Projects';
+    res.render('projects', { title, projects });
+    } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+    }
+};
+
+
+
+export { showProjectsPage, showUpcomingProjectsListPage };
 
