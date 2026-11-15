@@ -50,7 +50,7 @@ const getProjectsByCategoryId = async (categoryId) => {
     return result.rows || [];
 };
 
-export { getAllCategories, getCategoryById, getCategoriesByProjectId, getProjectsByCategoryId };
+export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByProjectId, };
 
 
 
