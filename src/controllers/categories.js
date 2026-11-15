@@ -18,7 +18,7 @@ const showCategoryDetailsPage = async (req, res) => {
     const projects = await getProjectsByCategoryId(categoryId);
     const title = 'Category Details';
 
-    res.render('category', { title, projects, category });
+    res.render('category', { title, category, projects });
 } catch (error) {
     console.error(error);
     res.status(500).send(`Server Error: ${error.message}`);
