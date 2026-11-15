@@ -27,8 +27,10 @@ const showProjectDetailsPage = async (req, res) => {
         if (!project) {
             return res.status(404).send('Project not found');
         }
+
+        const categories = await getCategoriesByProjectId(projectId);
         
-        res.render('project', { title: project.name, project });
+        res.render('project', { title: project.name, project, categories });
     } catch (error) {
         console.error(error);
         res.status(500).send('Server Error');
