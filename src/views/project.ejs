@@ -17,7 +17,22 @@
                 </p>
             </div>
 
-            // External website link 
+            <div class="project-categories">
+                <p><strong>Categories:</strong></p>
+                <% if (categories && categories.length > 0) { %>
+                    <ul>
+                        <% categories.forEach(category => { %>
+                            <li>
+                                <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                        <% } else { %>
+            <p> No Categories Assigned To This Project.</p>
+        <% } %>
+            </div>
+
+            <!-- External website link -->
             <% if (project.link) { %>
             <div class="project-external-link">
                 <a href="<%= project.link %>" target="_blank">Visit External Website</a>
