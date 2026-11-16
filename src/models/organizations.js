@@ -1,4 +1,3 @@
-import { name } from 'ejs';
 import db from './db.js'
 
 const getAllOrganizations = async () => {
@@ -41,7 +40,7 @@ const getOrganizationDetails = async (organizationId) => {
 const createOrganization = async(name, description, contactEmail, logoFilename) => {
     const query = `
     INSERT INTO organization (name, description, contact_email, logo_filename)
-    VALUES ($1, $2, $3, 4)
+    VALUES ($1, $2, $3, $4)
     RETURNING organization_id
     `;
 
