@@ -9,7 +9,7 @@ import { testErrorPage } from './controllers/errors.js';
 import { showOrganizationDetailsPage } from './controllers/organizations.js';
 import { showCategoryDetailsPage } from './controllers/categories.js';
 import { showNewOrganizationForm } from './controllers/organizations.js';
-
+import { processNewOrganizationForm } from './controllers/organizations.js';
 const router = express.Router();
 
 // Here we define routes using this router object instead of app.
@@ -25,6 +25,9 @@ router.get('/category/:id', showCategoryDetailsPage);
 
 // Router GET for new-organization page
 router.get('/new-organization', showNewOrganizationForm);
+
+// Router to handle new organization form submission for POST requests
+router.post('/new-organization', processNewOrganizationForm);
 
 // test-route to errors
 router.get('/test-error', testErrorPage);

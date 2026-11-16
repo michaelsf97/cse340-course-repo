@@ -18,6 +18,10 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Allow Express to receive and process common POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Configure Express Middleware
 
 // Public folder for static files (CSS, Images)
