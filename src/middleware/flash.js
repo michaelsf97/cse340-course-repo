@@ -51,6 +51,27 @@ const flashMiddleware = (req, res, next) => {
             req.session.flash[type] = [];
             return messages;
            }
-    }
+
+           // GETTING ALL: No arguments means retrieve all message types.
+           const allMessages = req.session.flash || {
+            success: [],
+            error: [],
+            warning: [],
+            info: []
+           };
+
+           // Clear all flash messages after retrieving
+           req.session.flash = {
+            success: [],
+            error: [],
+            warning: [],
+            info: []
+
+           };
+
+           return allMessages;
+    };
+
+    next();
 } 
 
