@@ -4,6 +4,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { testConnection } from './src/models/db.js';
 import router from './src/routes.js';
+import session from 'express-session';
+
+// Loading session secret from environment variables
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -22,6 +26,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Set up session management
+app.use(session ({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {maxAge: 60 *60 * 1000 } // Session expires after 1 hour of inactivity.
+}));
 // Configure Express Middleware
 
 // Public folder for static files (CSS, Images)
