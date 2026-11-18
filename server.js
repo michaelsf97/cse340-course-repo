@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { testConnection } from './src/models/db.js';
 import router from './src/routes.js';
 import session from 'express-session';
+import flash from './src/middleware/flash.js';
 
 // Loading session secret from environment variables
 const SESSION_SECRET = process.env.SESSION_SECRET;
@@ -33,6 +34,9 @@ app.use(session ({
     saveUninitialized: true,
     cookie: {maxAge: 60 *60 * 1000 } // Session expires after 1 hour of inactivity.
 }));
+
+// Use Flash Message Middleware
+app.use(flash);
 // Configure Express Middleware
 
 // Public folder for static files (CSS, Images)
