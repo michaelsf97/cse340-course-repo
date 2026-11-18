@@ -16,10 +16,7 @@
       <a href="/projects">Projects</a>
       <a href="/categories">Categories</a>
     </nav>
-  </div>
-</header>
-</body>
-<% const messages = flash(); %>
+    <% const messages = flash(); %>
 <% Object.keys(messages).forEach(type => { %>
   <% if (messages[type].length > 0) { %>
 
@@ -28,5 +25,9 @@
           <% }); %>
   <% } %>
 <% }); %>
+  </div>
+</header>
+</body>
+
 </html>
 
