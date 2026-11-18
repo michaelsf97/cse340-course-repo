@@ -16,17 +16,19 @@
       <a href="/projects">Projects</a>
       <a href="/categories">Categories</a>
     </nav>
+  </div>
+</header>
     <% const messages = flash(); %>
 <% Object.keys(messages).forEach(type => { %>
   <% if (messages[type].length > 0) { %>
 
           <% messages[type].forEach(msg => { %>
+            <div class="alert alert-<%= type %>">
               <%= msg %>
+            </div>
           <% }); %>
   <% } %>
 <% }); %>
-  </div>
-</header>
 </body>
 
 </html>
