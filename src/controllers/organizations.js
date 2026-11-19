@@ -2,6 +2,7 @@ import { getAllOrganizations, getOrganizationDetails } from '../models/organizat
 import { getProjectsByOrganizationId } from '../models/projects.js';
 import { createOrganization } from '../models/organizations.js';
 import { body, validationResult } from 'express-validator';
+import { updateOrganization } from '../models/organizations.js';
 
 const showOrganizationsPage = async (req, res) => {
     const organizations = await getAllOrganizations();
@@ -83,6 +84,18 @@ const organizationValidation = [
     .withMessage('Please provide a valid email address')
 ];
 
+const processEditOrganizationForm = async(req, res) => {
+    const organizationId = req.params.id
+    const { name, description, contactEmail, logoFilename } = req.body
+    await UpdateOrganization(organizationId, name, description, contactEmail, logoFilename);
+
+    // Set a sucess flash message
+    req.flash('success', 'Organization Updated Successfully');
+    
+    res.redirect(`/organization/${organizationId}`);
+    
+};
+
 
 
 export {
@@ -91,5 +104,6 @@ export {
     showNewOrganizationForm,
     processNewOrganizationForm,
     organizationValidation,
-    showEditOrganizationForm
+    showEditOrganizationForm,
+    processEditOrganizationForm
 };
