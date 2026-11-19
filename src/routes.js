@@ -32,7 +32,7 @@ router.get('/new-organization', showNewOrganizationForm);
 // Router to handle new organization form submission for POST requests
 router.post('/new-organization', organizationValidation, processNewOrganizationForm);
 
-// Route to display the edit organization form
+// Route to display Edit Organization Form
 router.get('/edit-organization/:id', showEditOrganizationForm);
 
 // test-route to errors
