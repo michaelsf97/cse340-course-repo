@@ -36,6 +36,9 @@ router.post('/new-organization', organizationValidation, processNewOrganizationF
 // Route to display Edit Organization Form
 router.get('/edit-organization/:id', showEditOrganizationForm);
 
+// Route to display and handle the processEditOrganizationForm submission
+router.post('/edit-organization/:id', processEditOrganizationForm );
+
 // test-route to errors
 router.get('/test-error', testErrorPage);
 
