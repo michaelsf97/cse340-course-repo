@@ -11,6 +11,7 @@ import { showCategoryDetailsPage } from './controllers/categories.js';
 import { showNewOrganizationForm } from './controllers/organizations.js';
 import { processNewOrganizationForm } from './controllers/organizations.js';
 import { organizationValidation } from './controllers/organizations.js';
+import { showEditOrganizationForm } from './controllers/organizations.js';
 
 const router = express.Router();
 
@@ -30,6 +31,9 @@ router.get('/new-organization', showNewOrganizationForm);
 
 // Router to handle new organization form submission for POST requests
 router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+
+// Route to display the edit organization form
+router.get('/edit-organization/:id', showEditOrganizationForm);
 
 // test-route to errors
 router.get('/test-error', testErrorPage);
