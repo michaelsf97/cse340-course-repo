@@ -1,3 +1,4 @@
+import { body, validationResult } from 'express-validator';
 import { getAllProjects, getUpcomingProjectsList, getProjectDetails } from '../models/projects.js';
 import { getCategoriesByProjectId } from '../models/categories.js';
 import { createProject } from '../models/projects.js';
@@ -48,6 +49,14 @@ const showNewProjectForm = async (req, res) => {
     }
 
     const processNewProjectForm = async(req, res) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            errors.array().forEach(error => {
+                req.flash('error', error.msg);
+            });
+            return res.redirect('/new-project');
+        }
         // Extract form data from req.body
         const { title, description, location, date, organizationId } = req.body;
 
@@ -63,7 +72,39 @@ const showNewProjectForm = async (req, res) => {
             res.redirect('/new-project');
         }
         
-    }
+    };
+
+    const projectValidation = [
+        body('title')
+        .trim()
+        .notEmpty()
+        .withMessage('Project title is not required')
+        .isLength({ min: 3, max: 200})
+        .withMessage('Project ttile must be between 3 to 200 characters.'),
+        body('description')
+        .trim()
+        .notEmpty()
+        .withMessage('Description is required')
+        .isLength({ max: 1000 })
+        .withMessage('Project Description must be less than 1000 characters.'),
+        body('location')
+        .trim()
+        .notEmpty()
+        .withMessage('Project location is required')
+        .isLength({ max: 200 })
+        .withMessage('Project location must be less than 200 characters.'),
+        body('date')
+        .trim()
+        .notEmpty()
+        .withMessage('date is required')
+        .isISO8601()
+        .withMessage('Please enter a valid date'),
+        body('organizationId')
+        .notEmpty()
+        .withMessage('Organization is required')
+        .isInt()
+        .withMessage('Please enter a valid organization')
+    ];
 
 
 
