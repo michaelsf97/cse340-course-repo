@@ -111,5 +111,5 @@ const showNewProjectForm = async (req, res) => {
 
 
 
-export { showProjectsPage, showUpcomingProjectsListPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm };
+export { showProjectsPage, showUpcomingProjectsListPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
 
