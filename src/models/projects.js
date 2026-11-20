@@ -80,7 +80,7 @@ import db from './db.js';
         RETURNING project_id;
         `;
 
-        const queryParams = [name, description, location, date, organizationId];
+        const queryParams = [name, description, location, date, organization_Id];
         const result = await db.query(query, queryParams);
 
         if (result.rows.length === 0) {
