@@ -75,7 +75,7 @@ import db from './db.js';
 
     const createProject = async(title, description, location, date, organization_Id) => {
         const query = `
-        INSERT INTO project(title, description, location, date, organization_Id)
+        INSERT INTO project(name, description, location, date, organization_Id)
         VALUES ($1, $2, $3. $4, $5)
         RETURNING project_id;
         `;
