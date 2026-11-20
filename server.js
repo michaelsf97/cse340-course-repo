@@ -75,7 +75,7 @@ app.use((req, res, next) => {
 // Global error handler 
 app.use((err, req, res, next) => {
     // Log error details for debugging
-    console.error('Error ocurred:', err.message);
+    console.error('Error:', err.message);
     console.error('Stack trace:', err.stack);
 
     // Determine the status and template
