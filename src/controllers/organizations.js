@@ -87,7 +87,7 @@ const organizationValidation = [
 const processEditOrganizationForm = async(req, res) => {
     const organizationId = req.params.id
     const { name, description, contactEmail, logoFilename } = req.body
-    await UpdateOrganization(organizationId, name, description, contactEmail, logoFilename);
+    await updateOrganization(organizationId, name, description, contactEmail, logoFilename);
 
     // Set a sucess flash message
     req.flash('success', 'Organization Updated Successfully');
