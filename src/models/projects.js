@@ -96,4 +96,4 @@ import db from './db.js';
     };
 
     // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList, getProjectDetails };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList, getProjectDetails, createProject };
