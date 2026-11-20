@@ -13,6 +13,8 @@ import { processNewOrganizationForm } from './controllers/organizations.js';
 import { organizationValidation } from './controllers/organizations.js';
 import { showEditOrganizationForm } from './controllers/organizations.js';
 import { processEditOrganizationForm } from './controllers/organizations.js';
+import { showNewProjectForm } from './controllers/projects.js';
+import { processNewProjectForm } from './controllers/projects.js';
 
 const router = express.Router();
 
@@ -30,6 +32,9 @@ router.get('/category/:id', showCategoryDetailsPage);
 // Router GET for new-organization page
 router.get('/new-organization', showNewOrganizationForm);
 
+// Router GET for new-project page
+router.get('/new-project', showNewProjectForm);
+
 // Router to handle new organization form submission for POST requests
 router.post('/new-organization', organizationValidation, processNewOrganizationForm);
 
@@ -38,6 +43,9 @@ router.get('/edit-organization/:id', showEditOrganizationForm);
 
 // Route to display and handle the processEditOrganizationForm submission
 router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm );
+
+// Route to display and handle the processNewProjectForm submission
+router.post('/new-project', processNewOrganizationForm);
 
 // test-route to errors
 router.get('/test-error', testErrorPage);
