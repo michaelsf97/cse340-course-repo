@@ -3,6 +3,7 @@ import { getAllProjects, getUpcomingProjectsList, getProjectDetails } from '../m
 import { getCategoriesByServiceProjectId } from '../models/categories.js';
 import { createProject } from '../models/projects.js';
 import { getAllOrganizations } from '../models/organizations.js';
+import { updateProject } from '../models/projects.js';
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
 
@@ -106,10 +107,69 @@ const showNewProjectForm = async (req, res) => {
         .withMessage('Please enter a valid organization')
     ];
 
+    const showEditProjectForm = async(req, res) => {
+        try {
+        // 1. Catch projectId from req.params
+        const { projectId } = req.params;
+
+        // 2. Consult current dates of project from model 
+        const project = await getProjectById(projectId);
+
+        // 3. Catch organizations list to select
+        const organizations = await getAllOrganizations();
+
+        // 4. Render edit-project.ejs passing through project and organizations
+        res.render('edit-project', {
+            title: 'Edit Project',
+            project,
+            organizations,
+            errors: []
+        });
+    } catch (error) {
+        next(error);
+    }
+
+};
+
+const processEditProjectForm = async (req, res, next) => {
+    const { projectId } = req.params;
+    const { title, description, date, location, organizationId } = req.body;
+
+    try {
+        // 1. Review results from validation in server
+        const errors = validationResult(req);
+
+        // 2. If there are errors from Validation, Upload again Views with dates/messages
+        if (!errors.isEmpty()) {
+            const organizations = await getAllOrganizations();
+            return res.status(400).render('edit-project', {
+                title: 'Edit Project',
+                project: {
+                    project_id: projectId,
+                    title,
+                    description,
+                    project_date: date,
+                    location,
+                    organization_id: organizationId
+                },
+                organizations,
+                errors: errors.array()
+            });
+        }
+
+        // 3. If all is valid, update, and show flasg messages and redirect.
+        await updateProject(title, description, date, location, organizationId, projectId);
+        req.flash('success', 'Project updated successfully');
+        res.redirect(`/project/${projectId}`);
+    } catch (error) {
+        next(error);
+    }
+};
 
 
 
 
 
-export { showProjectsPage, showUpcomingProjectsListPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
+
+export { showProjectsPage, showUpcomingProjectsListPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };
 
