@@ -82,7 +82,20 @@ const createCategory = async (name, imageFilename = 'default-category.png') => {
     return result.rows[0];
 };
 
-export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByServiceProjectId, assignCategoryToProject, updateCategoryAssignments, createCategory };
+const updateCategory = async (name, categoryId) => {
+    const query = `
+        UPDATE categories
+        SET name = $1
+        WHERE category_id = $2
+        RETURNING category_id, name, description, image_filename
+    `;
+    const result = await db.query(query, [name, categoryId]);
+    return result.rows[0] || null;
+};
+
+
+
+export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByServiceProjectId, assignCategoryToProject, updateCategoryAssignments, createCategory, updateCategory };
 
 
 
