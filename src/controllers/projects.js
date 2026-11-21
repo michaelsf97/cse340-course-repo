@@ -1,6 +1,6 @@
 import { body, validationResult } from 'express-validator';
 import { getAllProjects, getUpcomingProjectsList, getProjectDetails } from '../models/projects.js';
-import { getCategoriesByProjectId } from '../models/categories.js';
+import { getCategoriesByServiceProjectId } from '../models/categories.js';
 import { createProject } from '../models/projects.js';
 import { getAllOrganizations } from '../models/organizations.js';
 
@@ -32,7 +32,7 @@ const showProjectDetailsPage = async (req, res) => {
             return res.status(404).send('Project not found');
         }
 
-        const categories = await getCategoriesByProjectId(projectId);
+        const categories = await getCategoriesByServiceProjectId(projectId);
         
         res.render('project', { title: project.name || 'Project Details', project, categories });
     } catch (error) {
