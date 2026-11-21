@@ -110,10 +110,15 @@ const showNewProjectForm = async (req, res) => {
     const showEditProjectForm = async(req, res, next) => {
         try {
         // 1. Catch projectId from req.params
-        const { projectId } = req.params;
+        const projectId = req.params.id;
 
-        // 2. Consult current dates of project from model 
+        // 2. Consult current data of project from model 
         const project = await getProjectDetails(projectId);
+        
+        if (!project) {
+            req.flash('error', 'Project not found.');
+            return res.redirect('/projects');
+        }
 
         // 3. Catch organizations list to select
         const organizations = await getAllOrganizations();
