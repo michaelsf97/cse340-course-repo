@@ -23,7 +23,7 @@ const getCategoryById = async (categoryId) => {
     return result.rows && result.rows.length > 0 ? result.rows[0]: null;
 };
 
-const getCategoriesByProjectId = async (projectId) => {
+const getCategoriesByServiceProjectId = async (projectId) => {
     const query = `
     SELECT c.category_id, c.name
     FROM categories c
@@ -50,7 +50,7 @@ const getProjectsByCategoryId = async (categoryId) => {
     return result.rows || [];
 };
 
-export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByProjectId, };
+export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByServiceProjectId, };
 
 
 
