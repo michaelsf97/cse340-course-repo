@@ -7,8 +7,8 @@
             <label for="name">Project Name</label>
             <input
             type="text"
-            id="text"
-            name="name"
+            id="name"
+            name="title"
             value="<% project.name %>"
             required
             maxlength="150"
@@ -32,7 +32,7 @@
             type="date"
             id="date"
             name="date"
-            value="<%= project.date %>"
+            value="<%= project.date ? new Date(project.date).toISOString().split('T')[0] : '' %>"
             required
         >
     </div>
