@@ -107,13 +107,13 @@ const showNewProjectForm = async (req, res) => {
         .withMessage('Please enter a valid organization')
     ];
 
-    const showEditProjectForm = async(req, res) => {
+    const showEditProjectForm = async(req, res, next) => {
         try {
         // 1. Catch projectId from req.params
         const { projectId } = req.params;
 
         // 2. Consult current dates of project from model 
-        const project = await getProjectById(projectId);
+        const project = await getProjectDetails(projectId);
 
         // 3. Catch organizations list to select
         const organizations = await getAllOrganizations();
@@ -148,7 +148,7 @@ const processEditProjectForm = async (req, res, next) => {
                     project_id: projectId,
                     title,
                     description,
-                    project_date: date,
+                    date,
                     location,
                     organization_id: organizationId
                 },
@@ -157,7 +157,7 @@ const processEditProjectForm = async (req, res, next) => {
             });
         }
 
-        // 3. If all is valid, update, and show flasg messages and redirect.
+        // 3. If all is valid, update, and show flash messages and redirect.
         await updateProject(title, description, date, location, organizationId, projectId);
         req.flash('success', 'Project updated successfully');
         res.redirect(`/project/${projectId}`);

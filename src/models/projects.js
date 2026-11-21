@@ -128,7 +128,7 @@ import db from './db.js';
         description = $2,
         date = $3,
         location = $4,
-        organization_id = $5,
+        organization_id = $5
         WHERE project_id = $6
         RETURNING *;
         `;
@@ -141,6 +141,9 @@ import db from './db.js';
             organizationId,
             projectId
         ]);
+        if (!result.rows || result.rows.length === 0) {
+        throw new Error('Project not found or could not be updated');
+        }
 
         return result.rows[0];
 
