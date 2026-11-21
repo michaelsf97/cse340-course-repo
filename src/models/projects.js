@@ -121,5 +121,30 @@ import db from './db.js';
 
     }
 
+    const updateProject = async (title, description, date, location, organizationId, projectId) => {
+        const updateQuery = `
+        UPDATE projects
+        SET title = $1,
+        description = $2,
+        date = $3,
+        location = $4,
+        organization_id = $5,
+        WHERE project_id = $6
+        RETURNING *;
+        `;
+
+        const result = await db.query(updateQuery, [
+            title,
+            description,
+            date,
+            location,
+            organizationId,
+            projectId
+        ]);
+
+        return result.rows[0];
+
+    };
+
     // Export the model functions
-    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList, getProjectDetails, createProject, updateCategoryAssignments };
+    export { getAllProjects, getProjectsByOrganizationId, getUpcomingProjectsList, getProjectDetails, createProject, updateCategoryAssignments, updateProject };
