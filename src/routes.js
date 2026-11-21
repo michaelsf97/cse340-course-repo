@@ -3,7 +3,7 @@ import express from 'express';
 // Import all controllers here from controllers folders.
 import { showHomePage } from './controllers/home.js';
 import { showOrganizationsPage } from './controllers/organizations.js';
-import { showProjectDetailsPage, showProjectsPage, showUpcomingProjectsListPage } from './controllers/projects.js';
+import { processEditProjectForm, showEditProjectForm, showProjectDetailsPage, showProjectsPage, showUpcomingProjectsListPage } from './controllers/projects.js';
 import { showCategoriesPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { showOrganizationDetailsPage } from './controllers/organizations.js';
@@ -56,6 +56,12 @@ router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 
 // Route to display and handle processAssignCategoriesForm controller function
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+
+// Route to display showEditProjectForm
+router.get('/edit-project/:id', showEditProjectForm );
+
+// Route to display and handle processEditProjectForm
+router.post('/edit-project/:id', processEditProjectForm);
 
 // test-route to errors
 router.get('/test-error', testErrorPage);

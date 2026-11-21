@@ -132,7 +132,7 @@ const showNewProjectForm = async (req, res) => {
 };
 
 const processEditProjectForm = async (req, res, next) => {
-    const { projectId } = req.params;
+    const projectId = req.params.id;
     const { title, description, date, location, organizationId } = req.body;
 
     try {
