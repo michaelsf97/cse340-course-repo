@@ -72,7 +72,17 @@ const updateCategoryAssignments = async (projectId, categoryIds) => {
     }
 };
 
-export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByServiceProjectId, assignCategoryToProject, updateCategoryAssignments };
+const createCategory = async (name, imageFilename = 'default-category.png') => {
+    const query = `
+        INSERT INTO categories (name, image_filename)
+        VALUES ($1, $2)
+        RETURNING category_id, name, description, image_filename
+    `;
+    const result = await db.query(query, [name, imageFilename]);
+    return result.rows[0];
+};
+
+export { getAllCategories, getCategoryById, getProjectsByCategoryId, getCategoriesByServiceProjectId, assignCategoryToProject, updateCategoryAssignments, createCategory };
 
 
 
