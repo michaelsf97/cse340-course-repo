@@ -80,7 +80,7 @@ const showNewProjectForm = async (req, res) => {
         .notEmpty()
         .withMessage('Project title is not required')
         .isLength({ min: 3, max: 200})
-        .withMessage('Project ttile must be between 3 to 200 characters.'),
+        .withMessage('Project title must be between 3 to 200 characters.'),
         body('description')
         .trim()
         .notEmpty()
