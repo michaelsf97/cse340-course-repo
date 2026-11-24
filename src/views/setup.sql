@@ -97,3 +97,10 @@ INSERT INTO projects_categories (project_id, category_id) VALUES
 (2, 1), -- Food Drive belongs to Community Outreach
 (3, 1), -- Community Tutoring belongs to Community Outreach
 (3, 3); -- Community Tutoring also belongs to Education & Tutoring
+
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) UNIQUE NOT NULL,
+    role_description TEXT
+);

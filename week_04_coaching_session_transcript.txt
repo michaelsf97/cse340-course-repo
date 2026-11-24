@@ -1,0 +1,213 @@
+Week 04 Coaching Session Transcript
+==================================
+
+--- Coach ---
+Welcome! Just to be clear from the start, this is a coaching session, not a test. It is perfectly okay—and even encouraged—to say "I don't know" or "I made a mistake." That's the fastest way we'll learn today.
+
+It's great to have this Week 04 coaching session with you, Michael—we're working in a chat interface here, so whenever we look at code together, I'll ask you to paste the relevant snippet right into our chat. We'll walk conversationally through Handling Form Submissions, Forms for Updates, Sessions and Flash Messages, and Server-side Validation around the assignment you just built and deployed.
+
+To kick off Topic 1: Handling Form Submissions, could you paste a non-trivial snippet of your form-handling controller or route logic and share what it does and why you structured it that way?
+
+--- Michael ---
+// Routes for creating a new category
+router.get('/new-category', showNewCategoryForm);
+// Routes to display and handle processNewCategoryForm
+router.post('/new-category', validateCategory, processNewCategoryForm);
+
+// Routes for editing a category
+router.get('/edit-category/:id', showEditCategoryForm);
+// Routes to display and handle processEditCategoryForm
+router.post('/edit-category/:id', validateCategory, processEditCategoryForm);
+
+These routes logic create and do a route logic to send to the Views to share to users HTML documents. 
+
+So that, beforehand it was at controllers to with some snippets there
+
+const showNewCategoryForm = (req, res) => {
+    res.render('new-category', {
+        title: 'Create Category',
+        name: '',
+        errors: []
+    });
+};
+
+Like this for instance creating a new function inside controller receiving a request and sending a response that to show and display a new potential category
+
+--- Coach ---
+That routing and controller separation makes a lot of sense—keeping the HTTP route definitions clear while passing initial default values like `name: ''` and `errors: []` into the EJS view avoids undefined template variables on first load.
+
+Looking at `router.post('/new-category', validateCategory, processNewCategoryForm)` and `router.post('/edit-category/:id', validateCategory, processEditCategoryForm)`, how do `processNewCategoryForm` and `processEditCategoryForm` pull the submitted values from the request (`req.body` / `req.params`) and pass them into your model/database logic?
+
+--- Michael ---
+processNewCategoryForm and processEditCategoryForm pull the submitted values from the req.body and req.params importing body from express-validator and same with parameters to receive in this case id from category.
+
+--- Coach ---
+That's super clear—using `req.body` for the submitted form data and `req.params` (like `id`) for targeting a specific category keeps the route parameters distinct from the payload.
+
+Could you paste the code snippet of `processNewCategoryForm` or `processEditCategoryForm` and share why you pass those values into a model/database function rather than running the SQL query directly inside the controller?
+
+--- Michael ---
+const processNewCategoryForm = async (req, res, next) => {
+    const { name } = req.body;
+
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).render('new-category', {
+
+
+Thanks, yes, i passed those values into a model/database function rather than running the SQL query directly inside the controller due to here i can create in this function the category, validating errors put flash messages and redirect this back to /category/:id
+                title: 'Create Category',
+                name: name || '',
+                errors: errors.array()
+            });
+        }
+
+        const created = await createCategory(name);
+        req.flash('success', 'Category created successfully.');
+        res.redirect(`/category/${created.category_id}`);
+    } catch (error) {
+        next(error);
+    }
+};
+
+--- Coach ---
+That makes complete sense—keeping HTTP concerns (`validationResult`, `req.flash`, `res.render`, `res.redirect`) in the controller while delegating database work to `createCategory(name)` keeps each layer focused on its job.
+
+Moving to Topic 2: Forms for Updates, could you paste your EJS update form snippet (or the part that populates existing values and handles errors) and explain how it shows existing data while preserving user input if validation fails?
+
+--- Michael ---
+I believe i can change this from edit-category.ejs 
+
+<%- include('partials/header') %>
+
+<main>
+    <h1> <%= title %> </h1>
+
+<% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+
+    <div class="errors">
+        <ul>
+            <% errors.forEach(err => { %>
+                <li><%= err.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<form action="/edit-category/<%= category.category_id %>" method="POST">
+    <div>
+        <label for="name">Category Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= category.title %>"
+            required
+            maxlength="100"
+        >
+    </div>
+
+    <button type="submit">Save Changes</button>
+</form>
+</main>
+
+<%- include('partials/footer') %>
+
+it shows existing data like title and more and then if the user put or fails with texts there are some erros requirements for messages
+
+--- Coach ---
+Good catch looking closely at `value="<%= category.title %>"`—if your database column or object property is `name` rather than `title`, `category.title` could end up undefined or miss the existing value, and if validation fails, `category.name` (or a fallback value) helps keep what the user typed.
+
+In that `<input>` inside `edit-category.ejs`, why did you have `category.title` there, and what property name actually holds the category name in your database/controller?
+
+--- Michael ---
+i have here category.title due to in the SQL or tables before at model cateogry.js there is something like this const getProjectsByCategoryId = async (categoryId) => {
+    const query = `
+    SELECT 
+    p.project_id,
+    p.name AS title,
+    p.description,
+    p.date,
+    p.location
+    FROM projects p
+    JOIN projects_categories pc ON p.project_id = pc.project_id
+    WHERE pc.category_id = $1
+    `;
+
+so it holds the category name in database/controller
+
+--- Coach ---
+Aha, that explains why `title` was on your mind—`p.name AS title` aliases a project's name as `title` in `getProjectsByCategoryId`, whereas the category itself has its own `name` column in the categories table and object.
+
+Moving to Topic 3: Sessions and Flash Messages, could you paste the snippet where you configure sessions or set/display flash messages (for example in your middleware or controller), and share what problem sessions and flash messages solve across redirects?
+
+--- Michael ---
+const processNewCategoryForm = async (req, res, next) => {
+    const { name } = req.body;
+
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).render('new-category', {
+                title: 'Create Category',
+                name: name || '',
+                errors: errors.array()
+            });
+        }
+
+        const created = await createCategory(name);
+        req.flash('success', 'Category created successfully.');
+        res.redirect(`/category/${created.category_id}`);
+    } catch (error) {
+        next(error);
+    }
+};
+
+For sure here i ahve a part at the end where i can set a flash message to handle soem errors and then passing to next
+
+--- Coach ---
+That `req.flash('success', 'Category created successfully.')` right before `res.redirect(...)` shows how a flash message gets stored across the redirect so the next page can read it once—and if an exception happens in the `try` block, `next(error)` hands it off to your error middleware.
+
+Why do we need a session store behind flash messages when doing a redirect (`res.redirect(...)`), instead of just passing a normal variable into `res.render(...)`?
+
+--- Michael ---
+Because of a session store allows us to save those flash messages and sent back to then likely acquire a POST inside a form
+
+--- Coach ---
+Right—because HTTP is stateless and a redirect triggers a brand-new request, the session store holds that flash message temporarily between requests so it's there when the browser loads the next page instead of getting lost.
+
+Now let's wrap up with Topic 4: Server-side Validation: could you paste your server-side validation snippet (like `validateCategory`) and explain what rules it checks and why validating on the server matters even if you also have HTML attributes like `required` or `maxlength` in the form?
+
+--- Michael ---
+const validateCategory = [
+    body('name')
+        .trim()
+        .notEmpty().withMessage('Category name is required.')
+        .isLength({ min: 3, max: 100 })
+        .withMessage('Category name must be between 3 and 100 characters.')
+];
+
+It checks some rules the first one .trim() that handles that not spaces between them.
+
+Second one  here is .notEmpty() with some messages category name is required not empty fields
+
+Then isLength validates min 3 characters and then 100 characters with an alert message there. as Flash message. then...
+
+--- Coach ---
+That `validateCategory` chain is super clean—`.trim()` strips leading/trailing spaces, `.notEmpty()` catches empty values, and `.isLength({ min: 3, max: 100 })` enforces the character range. (One small detail to keep in mind: `.trim()` removes spaces at the start and end of the string rather than spaces between words like "Community Health", and `validationResult(req)` passes those errors into `errors.array()` for the EJS template.)
+
+Why is running checks like `validateCategory` on the server still essential when your HTML form already has attributes like `required` or `maxlength`?
+
+--- Michael ---
+Because of a user can open DevTools and remove then but after that server-side validation is available to deter this process. And, to protect data from website and avoid attacks XXS attacks
+
+--- Coach ---
+Spot on—anyone can inspect the page in DevTools, delete `required` or `maxlength` attributes, or send raw requests directly to the endpoint, so server-side validation is your real gatekeeper before data reaches the database (and pairing validation with output escaping in EJS helps protect against XSS).
+
+We've now covered all four Week 04 topics together: Handling Form Submissions, Forms for Updates, Sessions and Flash Messages, and Server-side Validation. Since I don't have a file-writing tool in this interface to export a downloadable `.txt` file directly, I can format the full transcript cleanly right here so you can copy and save it as a `.txt` file if you'd like.
+
+Would you like me to print out the full transcript of our session here for you to save?
+
+--- Michael ---
+fomrat this in .txt file
