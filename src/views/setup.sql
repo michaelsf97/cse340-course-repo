@@ -104,3 +104,23 @@ CREATE TABLE roles (
     role_name VARCHAR(50) UNIQUE NOT NULL,
     role_description TEXT
 );
+
+-- INSERT some roles to the role TABLE.
+
+INSERT INTO roles (role_name, role_description) VALUES 
+('user', 'Standard user with basic access'),
+('admin', 'Administrator with full system access');
+
+-- Verify that code is added successfully.
+SELECT * FROM roles;
+
+-- CREATE Tables related with users and adding the respective role_id according each one.
+
+CREATE TABLE users (
+user_id SERIAL PRIMARY KEY,
+users_name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+password_hash VARCHAR(255) NOT NULL,
+role_id INT REFERENCES roles(role_id),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
