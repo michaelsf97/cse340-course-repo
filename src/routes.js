@@ -80,11 +80,9 @@ router.get('/edit-category/:id', showEditCategoryForm);
 // Routes to display and handle processEditCategoryForm
 router.post('/edit-category/:id', validateCategory, processEditCategoryForm);
 
-// Router to call and creating a new showUserRegistrationForm
+// USER REGISTRATION ROUTES.
 router.get('/register/', showUserRegistrationForm);
-
-// Router to display and handle processUserRegistrationForm
-router.post('/register/:id', processUserRegistrationForm);
+router.post('/register/', processUserRegistrationForm);
 
 // test-route to errors
 router.get('/test-error', testErrorPage);
