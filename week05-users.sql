@@ -18,7 +18,7 @@ SELECT * FROM roles;
 -- Users Table defines available users with respective role
 
 CREATE TABLE users (
-users_id SERIAL PRIMARY KEY,
+user_id SERIAL PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 email VARCHAR(100) UNIQUE NOT NULL,
 password_hash VARCHAR(255) NOT NULL,
@@ -45,3 +45,12 @@ JOIN roles r ON u.role_id = r.role_id;
 
 -- DELETE the test user
 DELETE FROM users WHERE email = 'testuser@example.com', 'testadmin@example.com';
+
+SELECT users_id, name, email, password_hash, role_id
+FROM users;
+
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'users';
+
+SELECT user_id, name, email, password_hash, role_id FROM users;

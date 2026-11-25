@@ -116,7 +116,7 @@ SELECT * FROM roles;
 
 -- CREATE Tables related with users and adding the respective role_id according each one.
 
-CREATE TABLE users (
+CREATE TABLE user (
 users_id SERIAL PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 email VARCHAR(100) UNIQUE NOT NULL,
