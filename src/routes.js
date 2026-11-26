@@ -25,6 +25,9 @@ import { showEditCategoryForm } from './controllers/categories.js';
 import { processEditCategoryForm } from './controllers/categories.js';
 import { showUserRegistrationForm } from './controllers/users.js';
 import { processUserRegistrationForm } from './controllers/users.js';
+import { showLoginForm } from './controllers/users.js';
+import { processLoginForm } from './controllers/users.js';
+import { processLogout } from './controllers/users.js';
 
 
 const router = express.Router();
