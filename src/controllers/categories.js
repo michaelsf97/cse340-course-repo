@@ -29,30 +29,43 @@ const showCategoryDetailsPage = async (req, res) => {
 
 };
 
-const showAssignCategoriesForm = async (req, res) => {
+const showAssignCategoriesForm = async (req, res, next) => {
+    try {
     const projectId = req.params.projectId;
 
     const projectDetails = await getProjectDetails(projectId);
     const categories = await getAllCategories();
-    const assignedCategories = await getCategoriesByServiceProjectId();
+    const assignedRows = await getCategoriesByServiceProjectId(projectId);
+    const assignedCategoryIds = assignedRows.map((row) => Number(row.category_id));
     
     const title = 'Assign Categories to Project';
 
-    res.render('assign-categories', { title, projectId, projectDetails, categories, assignedCategories });
+    res.render('assign-categories', { title, projectId, projectDetails, categories, assignedCategoryIds });
+    } catch (error) {
+        next(error);
+    }
 
 
 };
 
-const processAssignCategoriesForm = async (req, res) => {
-    const projectId = req.params.projectId;
-    const selectedCategoryIds = req.body.categoryIds || [];
+const processAssignCategoriesForm = async (req, res, next) => {
+    try {
+        const projectId = req.params.projectId;
+        const rawCategoryIds = req.body.categoryIds;
 
-    // Ensure selectedCategoryIds is an array
-    const categoryIdsArray = Array.isArray(selectedCategoryIds) ? selectedCategoryIds : [selectedCategoryIds];
-    await updateCategoryAssignments(projectId, categoryIdsArray);
-    req.flash('success', 'Categories updated successfully');
-    res.redirect(`/project/${projectId}`);
-}
+        const categoryIdsArray = !rawCategoryIds
+            ? []
+            : Array.isArray(rawCategoryIds)
+                ? rawCategoryIds.map(Number)
+                : [Number(rawCategoryIds)];
+
+        await updateCategoryAssignments(projectId, categoryIdsArray);
+        req.flash('success', 'Categories updated successfully');
+        res.redirect(`/project/${projectId}`);
+    } catch (error) {
+        next(error);
+    }
+};
 
 const validateCategory = [
     body('name')
