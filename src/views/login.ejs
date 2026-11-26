@@ -6,23 +6,24 @@
 
 <form action="/login" method="POST">
     <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">Email:(Username)</label>
         <input
         type="email"
         id="email"
         name="email"
-        >
+        />
     </div>
 
     <div class="form-group">
-        <label for="password">
+        <label for="password"></label>
             <input
             type="password"
             id="password"
             name="password"
-            >
-        </label>
+            />
     </div>
 
     <button type="submit">Log In</button>
 </form>
+
+<%- include('partials/footer') %>
