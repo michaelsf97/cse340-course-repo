@@ -124,7 +124,7 @@ import db from './db.js';
     const updateProject = async (title, description, date, location, organizationId, projectId) => {
         const updateQuery = `
         UPDATE projects
-        SET title = $1,
+        SET name = $1,
         description = $2,
         date = $3,
         location = $4,
