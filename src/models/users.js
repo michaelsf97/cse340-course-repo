@@ -24,7 +24,7 @@ const createNewUser = async(name, email, passwordHash) => {
     };
 
 
-    const findUserByEmail = async(req, res) => {
+    const findUserByEmail = async(email) => {
         const query = `
         SELECT user_id, name, email, password_hash, role_id
         FROM users
