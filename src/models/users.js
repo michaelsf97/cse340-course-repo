@@ -65,4 +65,4 @@ const createNewUser = async(name, email, passwordHash) => {
     };
     
 
-    export { createNewUser, findUserByEmail, verifyPassword, authenticateUser };
+    export { createNewUser, authenticateUser };
