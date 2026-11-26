@@ -87,6 +87,12 @@ router.post('/edit-category/:id', validateCategory, processEditCategoryForm);
 router.get('/register/', showUserRegistrationForm);
 router.post('/register/', processUserRegistrationForm);
 
+// ROUTES TO LOGIN.
+
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
+
 // test-route to errors
 router.get('/test-error', testErrorPage);
 
