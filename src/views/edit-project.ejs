@@ -18,12 +18,11 @@
         <div class="form-group">
             <label for="description">Project Description</label>
             <textarea
-            id="descriptio"
+            id="description"
             name="description"
             required
             maxlength="500"
-            ><%= project.description || '' %>
-        </textarea>
+            ><%= project.description || '' %></textarea>
         </div>
 
         <div>
@@ -66,4 +65,8 @@
         <% }); %>
     </select>
 </div>
+<button type="submit"> Save Changes</button>
+</form>
 </main>
+
+<%- include('partials/footer') %>d
