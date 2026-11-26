@@ -138,7 +138,7 @@ const showNewProjectForm = async (req, res) => {
 
 const processEditProjectForm = async (req, res, next) => {
     const projectId = req.params.id;
-    const { title, description, date, location, organizationId } = req.body;
+    const { name, description, date, location, organizationId } = req.body;
 
     try {
         // 1. Review results from validation in server
@@ -151,7 +151,7 @@ const processEditProjectForm = async (req, res, next) => {
                 title: 'Edit Project',
                 project: {
                     project_id: projectId,
-                    title,
+                    name,
                     description,
                     date,
                     location,
@@ -163,7 +163,7 @@ const processEditProjectForm = async (req, res, next) => {
         }
 
         // 3. If all is valid, update, and show flash messages and redirect.
-        await updateProject(title, description, date, location, organizationId, projectId);
+        await updateProject(name, description, date, location, organizationId, projectId);
         req.flash('success', 'Project updated successfully');
         res.redirect(`/project/${projectId}`);
     } catch (error) {
