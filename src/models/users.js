@@ -31,7 +31,7 @@ const createNewUser = async(name, email, passwordHash) => {
         WHERE email = $1
     `;
 
-    const queryParams = query[email];
+    const queryParams = [email];
 
     const result = await db.query(query, queryParams);
 
