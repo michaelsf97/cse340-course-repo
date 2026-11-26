@@ -22,21 +22,19 @@
         name="description"
         required
         maxlength="500"
-        ><%= organizationDetails.description %>
-    </textarea>
+        ><%= organizationDetails.description %></textarea>
     </div>
 
     <div class="form-group">
         <label for="contactEmail">Contact Email*</label>
-        <textarea
+        <input
         type="email"
         id="contactEmail"
         name="contactEmail"
         maxlength="255"
-        required*
+        required
         value="<%= organizationDetails.contact_email %>"
         />
-    </textarea>
     </div>
 
     <div class="form-group">
@@ -51,7 +49,7 @@
         />
     </div>
 
-    <button type="submit">Create Organization</button>
+    <button type="submit">Save Changes</button>
 </form>
 
 </main>
