@@ -47,7 +47,7 @@ const processLoginForm = async(req, res) => {
                 console.log('User logged in', user);
             }
 
-            res.redirect('/');
+            res.redirect('/dashboard');
         } else {
             req.flash('error', 'Invalid email or password.');
             res.redirect('/login');
