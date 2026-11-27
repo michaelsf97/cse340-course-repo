@@ -94,6 +94,9 @@ router.get('/login', showLoginForm);
 router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 
+// Routes to Dashboard.
+router.get('/dashboard', requireLogin, showDashboard);
+
 // test-route to errors
 router.get('/test-error', testErrorPage);
 
