@@ -28,6 +28,7 @@ import { processUserRegistrationForm } from './controllers/users.js';
 import { showLoginForm } from './controllers/users.js';
 import { processLoginForm } from './controllers/users.js';
 import { processLogout } from './controllers/users.js';
+import { requireLogin } from './controllers/users.js';
 import { showDashboard } from './controllers/users.js';
 
 
@@ -94,7 +95,7 @@ router.get('/login', showLoginForm);
 router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 
-// Routes to Dashboard.
+// Protected Dashboard Route
 router.get('/dashboard', requireLogin, showDashboard);
 
 // test-route to errors
