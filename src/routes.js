@@ -28,6 +28,7 @@ import { processUserRegistrationForm } from './controllers/users.js';
 import { showLoginForm } from './controllers/users.js';
 import { processLoginForm } from './controllers/users.js';
 import { processLogout } from './controllers/users.js';
+import { showDashboard } from './controllers/users.js';
 
 
 const router = express.Router();
