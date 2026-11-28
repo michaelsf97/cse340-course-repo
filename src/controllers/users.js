@@ -78,7 +78,7 @@ const requireLogin = (req, res, next) => {
 
 const requireRole = (role) => {
     return (req, res, next) => {
-        if (!req.session.user) {
+        if (!req.session || !req.session.user) {
             req.flash('error', 'You must be logged in to access this page.');
             return res.redirect('/login');
         }
