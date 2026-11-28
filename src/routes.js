@@ -31,6 +31,7 @@ import { processLogout } from './controllers/users.js';
 import { requireLogin } from './controllers/users.js';
 import { showDashboard } from './controllers/users.js';
 import { requireRole } from './controllers/users.js';
+import { showUsersRegisteredPage } from './controllers/users.js';
 
 
 const router = express.Router();
@@ -87,7 +88,7 @@ router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
 router.post('/edit-category/:id', requireRole('admin'), validateCategory, processEditCategoryForm);
 
 // W05 admin-only users list route
-router.get('/users', requireRole('admin'), showUsersPage);
+router.get('/users', requireRole('admin'), showUsersRegisteredPage);
 
 // USER REGISTRATION ROUTES.
 router.get('/register/', showUserRegistrationForm);
