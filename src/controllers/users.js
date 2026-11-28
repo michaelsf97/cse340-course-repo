@@ -87,7 +87,7 @@ const requireRole = (role) => {
 
         if(userRole !== role) {
             req.flash('error','You do not have permission to access this page.');
-            return res.redirect('/dashboard');
+            return res.redirect('/');
         }
 
         next();
