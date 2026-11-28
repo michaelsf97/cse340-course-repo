@@ -14,7 +14,10 @@
     <% } else { %>
         <p>No categories available.</p>
     <% } %>
+
+    <% if (user && user.role_name === 'admin') { %>
     <a href="/new-category">Create New Category</a>
+    <% } %>
 </main>
 
 <%- include('partials/footer') %>

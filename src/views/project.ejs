@@ -31,10 +31,11 @@
             <p> No Categories Assigned To This Project.</p>
         <% } %>
             </div>
-            
+            <% if (user && user.role_name === 'admin') { %>
             <a href="/edit-project/<%= project.project_id %>">Edit Project</a>
 
             <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a>
+            <% } %>
 
             <!-- External website link -->
             <% if (project.link) { %>

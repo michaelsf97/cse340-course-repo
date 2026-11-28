@@ -61,8 +61,9 @@
         <% }); %>
         </select>
     </div>
-
+    <% if (user && user.role_name === 'admin') { %>
     <button type="submit">Create Project</button>
+    <% } %>
 
     </form>
 </main>
