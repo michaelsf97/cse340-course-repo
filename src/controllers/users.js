@@ -76,6 +76,26 @@ const requireLogin = (req, res, next) => {
     next();
 };
 
+const requireRole = (role) => {
+    return (req, res, next) => {
+        if (!req.session.user) {
+            req.flash('error', 'You must be logged in to access this page.');
+            return res.redirect('/login');
+        }
+
+        const userRole = req.session.user.role_name;
+
+        if(userRole !== role) {
+            req.flash('error','You do not have permission to access this page.');
+            return res.redirect('/dashboard');
+        }
+
+        next();
+
+    };
+  
+};
+
 const showDashboard = async(req, res) => {
     const user = req.session.user;
     res.render('dashboard', {
@@ -87,4 +107,4 @@ const showDashboard = async(req, res) => {
 };
 
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard };
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
