@@ -65,6 +65,17 @@ const createNewUser = async(name, email, passwordHash) => {
         delete user.password_hash;
         return user;
     };
+
+    const getAllRegisteredUsers = async () => {
+        const query = `
+        SELECT u.user_id, u.name, u.email, r.role_name
+        FROM users u
+        JOIN roles r ON u.role_id = r.role_id
+        ORDER BY u.user_id ASC
+        `;
+        const result = await db.query(query)
+        return result.rows;
+    };
     
 
-    export { createNewUser, authenticateUser };
+    export { createNewUser, authenticateUser, getAllRegisteredUsers };

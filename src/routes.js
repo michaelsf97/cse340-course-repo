@@ -86,6 +86,9 @@ router.get('/edit-category/:id', requireRole('admin'), showEditCategoryForm);
 // Routes to display and handle processEditCategoryForm
 router.post('/edit-category/:id', requireRole('admin'), validateCategory, processEditCategoryForm);
 
+// W05 admin-only users list route
+router.get('/users', requireRole('admin'), showUsersPage);
+
 // USER REGISTRATION ROUTES.
 router.get('/register/', showUserRegistrationForm);
 router.post('/register/', processUserRegistrationForm);
