@@ -7,7 +7,7 @@
     <p>Username: <%= email %></p>
 
     <% if (user && user.role_name === 'admin') { %>
-        <section class="admin-actions"></section>
+        <section class="admin-actions">
             <a href="/users">View Registered Users</a>
         </section>
     <% } %>
